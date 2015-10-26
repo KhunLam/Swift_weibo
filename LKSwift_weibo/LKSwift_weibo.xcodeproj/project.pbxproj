@@ -13,6 +13,12 @@
 		25085DAD1BDE45780060A150 /* LKSwift_weiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085DAC1BDE45780060A150 /* LKSwift_weiboTests.swift */; };
 		25085DB81BDE45780060A150 /* LKSwift_weiboUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085DB71BDE45780060A150 /* LKSwift_weiboUITests.swift */; };
 		25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E431BDE4CB20060A150 /* LKMainTabBarViewController.swift */; };
+		25085E491BDE53240060A150 /* LKHomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E481BDE53240060A150 /* LKHomeTableViewController.swift */; };
+		25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */; };
+		25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */; };
+		25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */; };
+		25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */; };
+		25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F61BDE8D320064ECAD /* LKVistorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,12 @@
 		25085DB71BDE45780060A150 /* LKSwift_weiboUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKSwift_weiboUITests.swift; sourceTree = "<group>"; };
 		25085DB91BDE45780060A150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25085E431BDE4CB20060A150 /* LKMainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKMainTabBarViewController.swift; sourceTree = "<group>"; };
+		25085E481BDE53240060A150 /* LKHomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKHomeTableViewController.swift; sourceTree = "<group>"; };
+		25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKMessageTableViewController.swift; sourceTree = "<group>"; };
+		25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKDiscoverTableViewController.swift; sourceTree = "<group>"; };
+		25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKProfileTableViewController.swift; sourceTree = "<group>"; };
+		25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKBaseTableViewController.swift; sourceTree = "<group>"; };
+		25F672F61BDE8D320064ECAD /* LKVistorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKVistorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +198,7 @@
 		25085DCB1BDE48020060A150 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -218,6 +231,7 @@
 		25085DCF1BDE48020060A150 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				25085E481BDE53240060A150 /* LKHomeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				25085E431BDE4CB20060A150 /* LKMainTabBarViewController.swift */,
+				25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,6 +280,7 @@
 		25085DD51BDE48020060A150 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25F672F61BDE8D320064ECAD /* LKVistorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +299,7 @@
 		25085DD71BDE48020060A150 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -315,6 +332,7 @@
 		25085DDB1BDE48020060A150 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -506,9 +524,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */,
 				25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */,
+				25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */,
+				25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */,
+				25085E491BDE53240060A150 /* LKHomeTableViewController.swift in Sources */,
+				25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */,
 				25085D951BDE45770060A150 /* AppDelegate.swift in Sources */,
 				25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */,
+				25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +742,7 @@
 				25085DBE1BDE45780060A150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25085DBF1BDE45780060A150 /* Build configuration list for PBXNativeTarget "LKSwift_weiboTests" */ = {
 			isa = XCConfigurationList;
@@ -726,6 +751,7 @@
 				25085DC11BDE45780060A150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25085DC21BDE45780060A150 /* Build configuration list for PBXNativeTarget "LKSwift_weiboUITests" */ = {
 			isa = XCConfigurationList;
@@ -734,6 +760,7 @@
 				25085DC41BDE45780060A150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
