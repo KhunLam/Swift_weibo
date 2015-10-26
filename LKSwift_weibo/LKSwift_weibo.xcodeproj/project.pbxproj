@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		25085D951BDE45770060A150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085D941BDE45770060A150 /* AppDelegate.swift */; };
-		25085D971BDE45770060A150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085D961BDE45770060A150 /* ViewController.swift */; };
-		25085D9A1BDE45780060A150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25085D981BDE45780060A150 /* Main.storyboard */; };
 		25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25085D9B1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld */; };
 		25085D9F1BDE45780060A150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25085D9E1BDE45780060A150 /* Assets.xcassets */; };
-		25085DA21BDE45780060A150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25085DA01BDE45780060A150 /* LaunchScreen.storyboard */; };
 		25085DAD1BDE45780060A150 /* LKSwift_weiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085DAC1BDE45780060A150 /* LKSwift_weiboTests.swift */; };
 		25085DB81BDE45780060A150 /* LKSwift_weiboUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085DB71BDE45780060A150 /* LKSwift_weiboUITests.swift */; };
+		25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E431BDE4CB20060A150 /* LKMainTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +35,8 @@
 /* Begin PBXFileReference section */
 		25085D911BDE45770060A150 /* LKSwift_weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKSwift_weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25085D941BDE45770060A150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		25085D961BDE45770060A150 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		25085D991BDE45780060A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25085D9C1BDE45780060A150 /* LKSwift_weibo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LKSwift_weibo.xcdatamodel; sourceTree = "<group>"; };
 		25085D9E1BDE45780060A150 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		25085DA11BDE45780060A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25085DA31BDE45780060A150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25085DA81BDE45780060A150 /* LKSwift_weiboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LKSwift_weiboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25085DAC1BDE45780060A150 /* LKSwift_weiboTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKSwift_weiboTests.swift; sourceTree = "<group>"; };
@@ -49,6 +44,7 @@
 		25085DB31BDE45780060A150 /* LKSwift_weiboUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LKSwift_weiboUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25085DB71BDE45780060A150 /* LKSwift_weiboUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKSwift_weiboUITests.swift; sourceTree = "<group>"; };
 		25085DB91BDE45780060A150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25085E431BDE4CB20060A150 /* LKMainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKMainTabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				25085D941BDE45770060A150 /* AppDelegate.swift */,
-				25085D961BDE45770060A150 /* ViewController.swift */,
-				25085D981BDE45780060A150 /* Main.storyboard */,
+				25085DC51BDE48020060A150 /* Classes */,
 				25085D9E1BDE45780060A150 /* Assets.xcassets */,
-				25085DA01BDE45780060A150 /* LaunchScreen.storyboard */,
 				25085DA31BDE45780060A150 /* Info.plist */,
 				25085D9B1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld */,
 			);
@@ -126,6 +120,257 @@
 				25085DB91BDE45780060A150 /* Info.plist */,
 			);
 			path = LKSwift_weiboUITests;
+			sourceTree = "<group>";
+		};
+		25085DC51BDE48020060A150 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				25085DC61BDE48020060A150 /* Extension(延展) */,
+				25085DC71BDE48020060A150 /* Library（库） */,
+				25085DC81BDE48020060A150 /* Model（全局模型） */,
+				25085DC91BDE48020060A150 /* Module（模块） */,
+				25085DE21BDE48020060A150 /* Tool（工具） */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		25085DC61BDE48020060A150 /* Extension(延展) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Extension(延展)";
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		25085DC71BDE48020060A150 /* Library（库） */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Library（库）";
+			path = Library;
+			sourceTree = "<group>";
+		};
+		25085DC81BDE48020060A150 /* Model（全局模型） */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Model（全局模型）";
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DC91BDE48020060A150 /* Module（模块） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DDE1BDE48020060A150 /* Test（测试） */,
+				25085DD21BDE48020060A150 /* Main（主要的） */,
+				25085DCE1BDE48020060A150 /* Home（首页） */,
+				25085DD61BDE48020060A150 /* Message（消息） */,
+				25085DCA1BDE48020060A150 /* Discover（发现） */,
+				25085DDA1BDE48020060A150 /* Profile（我） */,
+			);
+			name = "Module（模块）";
+			path = Module;
+			sourceTree = "<group>";
+		};
+		25085DCA1BDE48020060A150 /* Discover（发现） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DCB1BDE48020060A150 /* Controller */,
+				25085DCC1BDE48020060A150 /* Model */,
+				25085DCD1BDE48020060A150 /* View */,
+			);
+			name = "Discover（发现）";
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		25085DCB1BDE48020060A150 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25085DCC1BDE48020060A150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DCD1BDE48020060A150 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25085DCE1BDE48020060A150 /* Home（首页） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DCF1BDE48020060A150 /* Controller */,
+				25085DD01BDE48020060A150 /* Model */,
+				25085DD11BDE48020060A150 /* View */,
+			);
+			name = "Home（首页）";
+			path = Home;
+			sourceTree = "<group>";
+		};
+		25085DCF1BDE48020060A150 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25085DD01BDE48020060A150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DD11BDE48020060A150 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25085DD21BDE48020060A150 /* Main（主要的） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DD31BDE48020060A150 /* Controller */,
+				25085DD41BDE48020060A150 /* Model */,
+				25085DD51BDE48020060A150 /* View */,
+			);
+			name = "Main（主要的）";
+			path = Main;
+			sourceTree = "<group>";
+		};
+		25085DD31BDE48020060A150 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25085E431BDE4CB20060A150 /* LKMainTabBarViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25085DD41BDE48020060A150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DD51BDE48020060A150 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25085DD61BDE48020060A150 /* Message（消息） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DD71BDE48020060A150 /* Controller */,
+				25085DD81BDE48020060A150 /* Model */,
+				25085DD91BDE48020060A150 /* View */,
+			);
+			name = "Message（消息）";
+			path = Message;
+			sourceTree = "<group>";
+		};
+		25085DD71BDE48020060A150 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25085DD81BDE48020060A150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DD91BDE48020060A150 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25085DDA1BDE48020060A150 /* Profile（我） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DDB1BDE48020060A150 /* Controller */,
+				25085DDC1BDE48020060A150 /* Model */,
+				25085DDD1BDE48020060A150 /* View */,
+			);
+			name = "Profile（我）";
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		25085DDB1BDE48020060A150 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25085DDC1BDE48020060A150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DDD1BDE48020060A150 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25085DDE1BDE48020060A150 /* Test（测试） */ = {
+			isa = PBXGroup;
+			children = (
+				25085DDF1BDE48020060A150 /* Controller */,
+				25085DE01BDE48020060A150 /* Model */,
+				25085DE11BDE48020060A150 /* View */,
+			);
+			name = "Test（测试）";
+			path = Test;
+			sourceTree = "<group>";
+		};
+		25085DDF1BDE48020060A150 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25085DE01BDE48020060A150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25085DE11BDE48020060A150 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25085DE21BDE48020060A150 /* Tool（工具） */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Tool（工具）";
+			path = Tool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +435,7 @@
 		25085D891BDE45770060A150 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LK;
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = lamKhun;
@@ -235,9 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25085DA21BDE45780060A150 /* LaunchScreen.storyboard in Resources */,
 				25085D9F1BDE45780060A150 /* Assets.xcassets in Resources */,
-				25085D9A1BDE45780060A150 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25085D971BDE45770060A150 /* ViewController.swift in Sources */,
+				25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */,
 				25085D951BDE45770060A150 /* AppDelegate.swift in Sources */,
 				25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */,
 			);
@@ -298,25 +542,6 @@
 			targetProxy = 25085DB41BDE45780060A150 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		25085D981BDE45780060A150 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				25085D991BDE45780060A150 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		25085DA01BDE45780060A150 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				25085DA11BDE45780060A150 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		25085DBA1BDE45780060A150 /* Debug */ = {
@@ -404,7 +629,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = LKSwift_weibo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.itcast.LKSwift-weibo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -415,7 +642,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = LKSwift_weibo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.itcast.LKSwift-weibo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
