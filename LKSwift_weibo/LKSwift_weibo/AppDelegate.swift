@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        setupAppearance()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let tabbar = LKMainTabBarViewController()
@@ -30,6 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    private func setupAppearance(){
+        // 尽早设置
+        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
+    }
   
 }
 

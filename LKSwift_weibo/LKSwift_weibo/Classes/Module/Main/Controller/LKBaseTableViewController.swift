@@ -11,7 +11,7 @@ import UIKit
 class LKBaseTableViewController: UITableViewController {
     //是否登录了
     let userLogin = false
-    
+
     /*
     // 当实现这个方,并且给view设置值,不会再从其他地方加载view.xib storyboard
     在 loadView，如果:
@@ -21,97 +21,62 @@ class LKBaseTableViewController: UITableViewController {
     override func loadView() {
         userLogin ? super.loadView() : setupVisitorView()
     }
-    
-    
-    /// 创建访客视图
-    func setupVisitorView() {
-        view = LKVistorView()
-        view.backgroundColor = UIColor.whiteColor()
-    }
 
     
+//     创建访客视图
+        func setupVisitorView() {
+
+            let vistorView = LKVistorView()
+            view = vistorView
+            // 设置代理
+                    vistorView.vistorViewDelegate = self
+            // 设置导航栏
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: "vistorViewRegistClick")
     
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "vistorViewLoginClick")
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        if self is LKHomeTableViewController {
+            vistorView.startRotationAnimation()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+         // 监听应用退到后台,和进入前台
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        }
+        else if self is LKMessageTableViewController {
+            vistorView.setupVistorView("visitordiscover_image_message", message: "登录后，别人评论你的微博，发给你的消息，都会在这里收到通知")
+        } else if self is LKDiscoverTableViewController {
+            vistorView.setupVistorView("visitordiscover_image_message", message: "登录后，最新、最热微博尽在掌握，不再会与实事潮流擦肩而过")
+        } else if self is LKProfileTableViewController {
+            vistorView.setupVistorView("visitordiscover_image_profile", message: "登录后，你的微博、相册、个人资料会显示在这里，展示给别人")
+        }
+ 
+    }
+    // MAKR: - 通知方法
+    func didEnterBackground() {
+        // 暂停动画
+        print(__FUNCTION__)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        (view as! LKVistorView).pauseAnimation()
+    }
+    
+    func didBecomeActive() {
+        // 继续动画
+        print(__FUNCTION__)
+
+        (view as! LKVistorView).resumeAnimation()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+}
+// MARK: - 扩展 CZBaseTableViewController 实现 CZVistorViewDelegte 协议
+//相当于 category, 方便代码的管理
+extension LKBaseTableViewController: LKVistorViewDelegate {
+    // MARK: - 代理方法
+    func vistorViewRegistClick() {
+        print(__FUNCTION__)
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    func vistorViewLoginClick() {
+        print(__FUNCTION__)
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

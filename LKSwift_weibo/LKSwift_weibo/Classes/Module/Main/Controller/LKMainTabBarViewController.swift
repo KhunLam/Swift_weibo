@@ -55,12 +55,12 @@ class LKMainTabBarViewController: UITabBarController {
     // View 准备 出现时 为撰写按钮 设Frame
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let width = tabBar.bounds.width / CGFloat(5)
-        composeButton.frame = CGRect(x: width * 2, y: 0, width: width, height: tabBar.bounds.height)
+        let width = tabBar.bounds.size.width / CGFloat(5)
+        composeButton.frame = CGRect(x: width * 2, y: 0, width: width, height: tabBar.bounds.size.height)
         tabBar.addSubview(composeButton)
         
     }
-    // MARK: - 点击事件
+    // MARK - 点击事件
     ///撰写按钮 被点击
     func composeButtonClick() {
         // __FUNCTION__ 打印方法名称
