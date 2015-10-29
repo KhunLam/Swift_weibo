@@ -37,7 +37,7 @@ class LKMainTabBarViewController: UITabBarController {
         let messageVC = LKMessageTableViewController()
         self.addChildViewController(messageVC, title: "消息", imageName: "tabbar_message_center")
 
-        // 添加撰写控制器
+        // 添加撰写控制器（占位）
         let controller = UIViewController()
         self.addChildViewController(controller, title: "", imageName: "")
         

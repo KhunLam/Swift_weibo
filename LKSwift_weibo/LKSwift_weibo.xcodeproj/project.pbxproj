@@ -19,6 +19,7 @@
 		25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */; };
 		25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */; };
 		25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F61BDE8D320064ECAD /* LKVistorView.swift */; };
+		D4C11F71E9E94C59829C5141 /* Pods_LKSwift_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12C4DDC581C590D4362C80E5 /* Pods-LKSwift_weibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKSwift_weibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LKSwift_weibo/Pods-LKSwift_weibo.release.xcconfig"; sourceTree = "<group>"; };
 		25085D911BDE45770060A150 /* LKSwift_weibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKSwift_weibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25085D941BDE45770060A150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25085D9C1BDE45780060A150 /* LKSwift_weibo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LKSwift_weibo.xcdatamodel; sourceTree = "<group>"; };
@@ -57,6 +59,8 @@
 		25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKProfileTableViewController.swift; sourceTree = "<group>"; };
 		25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKBaseTableViewController.swift; sourceTree = "<group>"; };
 		25F672F61BDE8D320064ECAD /* LKVistorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKVistorView.swift; sourceTree = "<group>"; };
+		58322AA79669C198763D5DB4 /* Pods-LKSwift_weibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKSwift_weibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKSwift_weibo/Pods-LKSwift_weibo.debug.xcconfig"; sourceTree = "<group>"; };
+		C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LKSwift_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4C11F71E9E94C59829C5141 /* Pods_LKSwift_weibo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +96,8 @@
 				25085DAB1BDE45780060A150 /* LKSwift_weiboTests */,
 				25085DB61BDE45780060A150 /* LKSwift_weiboUITests */,
 				25085D921BDE45770060A150 /* Products */,
+				FF6525765EA43A975530E44F /* Pods */,
+				C65CD2330D49519D59976B16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -391,6 +398,23 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		C65CD2330D49519D59976B16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF6525765EA43A975530E44F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				58322AA79669C198763D5DB4 /* Pods-LKSwift_weibo.debug.xcconfig */,
+				12C4DDC581C590D4362C80E5 /* Pods-LKSwift_weibo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,9 +422,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25085DBC1BDE45780060A150 /* Build configuration list for PBXNativeTarget "LKSwift_weibo" */;
 			buildPhases = (
+				898040DF3A77CFD5D03027AB /* Check Pods Manifest.lock */,
 				25085D8D1BDE45770060A150 /* Sources */,
 				25085D8E1BDE45770060A150 /* Frameworks */,
 				25085D8F1BDE45770060A150 /* Resources */,
+				39540E04E53EC342BB83BAFE /* Embed Pods Frameworks */,
+				CBCCAA38C2F87C8579677FDD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -518,6 +545,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39540E04E53EC342BB83BAFE /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LKSwift_weibo/Pods-LKSwift_weibo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		898040DF3A77CFD5D03027AB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CBCCAA38C2F87C8579677FDD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LKSwift_weibo/Pods-LKSwift_weibo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		25085D8D1BDE45770060A150 /* Sources */ = {
@@ -651,6 +726,7 @@
 		};
 		25085DBD1BDE45780060A150 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58322AA79669C198763D5DB4 /* Pods-LKSwift_weibo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -664,6 +740,7 @@
 		};
 		25085DBE1BDE45780060A150 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12C4DDC581C590D4362C80E5 /* Pods-LKSwift_weibo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";

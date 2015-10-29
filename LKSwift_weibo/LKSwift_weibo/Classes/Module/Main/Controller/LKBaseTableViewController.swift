@@ -25,20 +25,22 @@ class LKBaseTableViewController: UITableViewController {
     
 //     创建访客视图
         func setupVisitorView() {
-
+//            得到访客视图
             let vistorView = LKVistorView()
             view = vistorView
             // 设置代理
                     vistorView.vistorViewDelegate = self
             // 设置导航栏
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: "vistorViewRegistClick")
-    
+
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "vistorViewLoginClick")
     
+            /**
+            *  判断是那个界面  使用的图片个文字
+            */
         if self is LKHomeTableViewController {
             vistorView.startRotationAnimation()
-
-         // 监听应用退到后台,和进入前台
+            // 监听应用退到后台,和进入前台
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
         }

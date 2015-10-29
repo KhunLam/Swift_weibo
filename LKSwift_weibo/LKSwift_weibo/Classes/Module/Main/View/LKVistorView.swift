@@ -46,9 +46,8 @@ class LKVistorView: UIView {
     func setupVistorView(imageName: String, message: String) {
         // 隐藏房子
         homeView.hidden = true
-        
+        //设置 图片和文字
         iconView.image = UIImage(named: imageName)
-        
         messageLabel.text = message
         // 把遮盖View 带到最底部
         self.sendSubviewToBack(coverView)
@@ -68,7 +67,7 @@ class LKVistorView: UIView {
         animation.repeatCount = MAXFLOAT
         animation.duration = 20
         
-        // 完成的时候不移除
+        // 完成的时候不移除 （让它继续动）不让它停
         animation.removedOnCompletion = false
         
         // 开始动画
@@ -98,9 +97,9 @@ class LKVistorView: UIView {
         iconView.layer.timeOffset = 0
         
         iconView.layer.beginTime = 0
-        
+        // 获得动画偏移时间
         let timeSincePause = iconView.layer.convertTime(CACurrentMediaTime(), fromLayer: nil) - pauseTime
-        
+        //  设置恢复时间
         iconView.layer.beginTime = timeSincePause
     }
 
