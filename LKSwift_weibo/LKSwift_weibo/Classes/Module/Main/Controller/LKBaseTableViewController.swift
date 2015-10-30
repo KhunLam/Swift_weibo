@@ -79,6 +79,10 @@ extension LKBaseTableViewController: LKVistorViewDelegate {
     }
 
     func vistorViewLoginClick() {
-        print(__FUNCTION__)
+        
+        // 加载授权界面
+        let controller = LKOauthViewController()
+        
+        presentViewController(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 }

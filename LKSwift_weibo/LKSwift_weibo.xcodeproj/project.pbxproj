@@ -17,8 +17,11 @@
 		25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */; };
 		25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */; };
 		25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */; };
+		252DB1131BE23433008E5A39 /* LKNetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DB1121BE23433008E5A39 /* LKNetworkTools.swift */; };
+		252DB1171BE23824008E5A39 /* LKOauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DB1161BE23824008E5A39 /* LKOauthViewController.swift */; };
 		25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */; };
 		25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F61BDE8D320064ECAD /* LKVistorView.swift */; };
+		25F6B4A91BE28709005C1329 /* LKUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F6B4A81BE28709005C1329 /* LKUserAccount.swift */; };
 		D4C11F71E9E94C59829C5141 /* Pods_LKSwift_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,8 +60,11 @@
 		25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKMessageTableViewController.swift; sourceTree = "<group>"; };
 		25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKDiscoverTableViewController.swift; sourceTree = "<group>"; };
 		25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKProfileTableViewController.swift; sourceTree = "<group>"; };
+		252DB1121BE23433008E5A39 /* LKNetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKNetworkTools.swift; sourceTree = "<group>"; };
+		252DB1161BE23824008E5A39 /* LKOauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKOauthViewController.swift; sourceTree = "<group>"; };
 		25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKBaseTableViewController.swift; sourceTree = "<group>"; };
 		25F672F61BDE8D320064ECAD /* LKVistorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKVistorView.swift; sourceTree = "<group>"; };
+		25F6B4A81BE28709005C1329 /* LKUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKUserAccount.swift; sourceTree = "<group>"; };
 		58322AA79669C198763D5DB4 /* Pods-LKSwift_weibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKSwift_weibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKSwift_weibo/Pods-LKSwift_weibo.debug.xcconfig"; sourceTree = "<group>"; };
 		C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LKSwift_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,6 +178,7 @@
 		25085DC81BDE48020060A150 /* Model（全局模型） */ = {
 			isa = PBXGroup;
 			children = (
+				25F6B4A81BE28709005C1329 /* LKUserAccount.swift */,
 			);
 			name = "Model（全局模型）";
 			path = Model;
@@ -180,6 +187,7 @@
 		25085DC91BDE48020060A150 /* Module（模块） */ = {
 			isa = PBXGroup;
 			children = (
+				252DB1141BE237F8008E5A39 /* Oauth(授权) */,
 				25085DDE1BDE48020060A150 /* Test（测试） */,
 				25085DD21BDE48020060A150 /* Main（主要的） */,
 				25085DCE1BDE48020060A150 /* Home（首页） */,
@@ -393,9 +401,27 @@
 		25085DE21BDE48020060A150 /* Tool（工具） */ = {
 			isa = PBXGroup;
 			children = (
+				252DB1121BE23433008E5A39 /* LKNetworkTools.swift */,
 			);
 			name = "Tool（工具）";
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		252DB1141BE237F8008E5A39 /* Oauth(授权) */ = {
+			isa = PBXGroup;
+			children = (
+				252DB1151BE237F8008E5A39 /* Controller */,
+			);
+			name = "Oauth(授权)";
+			path = Oauth;
+			sourceTree = "<group>";
+		};
+		252DB1151BE237F8008E5A39 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				252DB1161BE23824008E5A39 /* LKOauthViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		C65CD2330D49519D59976B16 /* Frameworks */ = {
@@ -602,8 +628,11 @@
 				25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */,
 				25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */,
 				25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */,
+				252DB1131BE23433008E5A39 /* LKNetworkTools.swift in Sources */,
 				25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */,
+				25F6B4A91BE28709005C1329 /* LKUserAccount.swift in Sources */,
 				25085E491BDE53240060A150 /* LKHomeTableViewController.swift in Sources */,
+				252DB1171BE23824008E5A39 /* LKOauthViewController.swift in Sources */,
 				25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */,
 				25085D951BDE45770060A150 /* AppDelegate.swift in Sources */,
 				25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */,

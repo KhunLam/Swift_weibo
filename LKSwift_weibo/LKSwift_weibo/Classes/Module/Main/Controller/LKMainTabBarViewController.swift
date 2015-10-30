@@ -10,25 +10,13 @@ import UIKit
 
 class LKMainTabBarViewController: UITabBarController {
 
-    
-    
-    /**
-     添加子控制器,包装Nav
-     - parameter controller: 控制器
-     - parameter title:      标题
-     - parameter imageName:  图片名称
-     */
-    private func addChildViewController(controller: UIViewController, title: String, imageName: String) {
-        controller.title = title
-        controller.tabBarItem.image = UIImage(named: imageName)
-        addChildViewController(UINavigationController(rootViewController: controller))
-
-    }
-    
+    //MARK: -------------------私有属性-------------------
+    //MARK: -------------------对外属性-------------------
+    //MARK: -------------------对外方法-------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        
         // 首页
         let homeVC = LKHomeTableViewController()
         addChildViewController(homeVC, title: "首页", imageName: "tabbar_home")
@@ -36,7 +24,7 @@ class LKMainTabBarViewController: UITabBarController {
         // 消息
         let messageVC = LKMessageTableViewController()
         self.addChildViewController(messageVC, title: "消息", imageName: "tabbar_message_center")
-
+        
         // 添加撰写控制器（占位）
         let controller = UIViewController()
         self.addChildViewController(controller, title: "", imageName: "")
@@ -60,9 +48,25 @@ class LKMainTabBarViewController: UITabBarController {
         tabBar.addSubview(composeButton)
         
     }
-    // MARK - 点击事件
+
+    //MARK: -------------------私有方法-------------------
+    
+    /**
+     添加子控制器,包装Nav
+     - parameter controller: 控制器
+     - parameter title:      标题
+     - parameter imageName:  图片名称
+     */
+    private func addChildViewController(controller: UIViewController, title: String, imageName: String) {
+        controller.title = title
+        controller.tabBarItem.image = UIImage(named: imageName)
+        addChildViewController(UINavigationController(rootViewController: controller))
+
+    }
+    
+        // MARK - 点击事件
     ///撰写按钮 被点击
-    func composeButtonClick() {
+   private func composeButtonClick() {
         // __FUNCTION__ 打印方法名称
         print(__FUNCTION__)
     }
@@ -70,7 +74,7 @@ class LKMainTabBarViewController: UITabBarController {
     
     //  MARK: - 懒加载
     /// 撰写按钮
-    lazy var composeButton: UIButton = {
+   private lazy var composeButton: UIButton = {
         let button = UIButton()
         // 按钮图片
         button.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
