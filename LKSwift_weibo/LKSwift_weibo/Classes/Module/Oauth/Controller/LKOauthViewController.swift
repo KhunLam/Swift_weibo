@@ -22,13 +22,12 @@ class LKOauthViewController: UIViewController {
     }
     
     
-    
-    /// 自动填充账号密码
-    func autoFill() {
-        let js = "document.getElementById('userId').value='13642301623';" + "document.getElementById('passwd').value='kun36471508';"
-        // webView执行js代码
-        webView.stringByEvaluatingJavaScriptFromString(js)
-    }
+//       /// 自动填充账号密码
+//    func autoFill() {
+//        let js = "document.getElementById('userId').value='账号';" + "document.getElementById('passwd').value='密码';"
+//        // webView执行js代码
+//        webView.stringByEvaluatingJavaScriptFromString(js)
+//    }
     // MARK: - 懒加载
     private lazy var webView = UIWebView()
     
@@ -46,7 +45,7 @@ class LKOauthViewController: UIViewController {
         // 设导航栏退出按钮
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "close")
         /// 自动填充账号密码
-         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "填充", style: UIBarButtonItemStyle.Plain, target: self, action: "autoFill")
+//         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "填充", style: UIBarButtonItemStyle.Plain, target: self, action: "autoFill")
 
         // 加载网页
         let request = NSURLRequest(URL: LKNetworkTools.sharedInstance.oauthRUL())
