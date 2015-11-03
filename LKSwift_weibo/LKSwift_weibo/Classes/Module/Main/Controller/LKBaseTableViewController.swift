@@ -10,7 +10,7 @@ import UIKit
 
 class LKBaseTableViewController: UITableViewController {
     //是否登录了
-    let userLogin = false
+    let userLogin = LKUserAccount.userLogin()
 
     /*
     // 当实现这个方,并且给view设置值,不会再从其他地方加载view.xib storyboard

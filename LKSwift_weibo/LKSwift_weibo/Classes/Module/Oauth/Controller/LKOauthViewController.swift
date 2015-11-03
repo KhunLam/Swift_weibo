@@ -12,7 +12,27 @@ import SVProgressHUD
 class LKOauthViewController: UIViewController {
     //MARK: -------------------私有属性-------------------
     //MARK: -------------------对外属性-------------------
-        //MARK: -------------------对外方法-------------------
+    //MARK: -------------------私有方法-------------------
+    /// 关闭控制器
+     func close() {
+        // 退出控制器
+        dismissViewControllerAnimated(true, completion: nil)
+        // 关闭正在加载
+        SVProgressHUD.dismiss()
+    }
+    
+    
+    
+    /// 自动填充账号密码
+    func autoFill() {
+        let js = "document.getElementById('userId').value='13642301623';" + "document.getElementById('passwd').value='kun36471508';"
+        // webView执行js代码
+        webView.stringByEvaluatingJavaScriptFromString(js)
+    }
+    // MARK: - 懒加载
+    private lazy var webView = UIWebView()
+    
+    //MARK: -------------------对外方法-------------------
     override func loadView() {
         view = webView
         
@@ -25,24 +45,16 @@ class LKOauthViewController: UIViewController {
         
         // 设导航栏退出按钮
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "close")
+        /// 自动填充账号密码
+         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "填充", style: UIBarButtonItemStyle.Plain, target: self, action: "autoFill")
 
         // 加载网页
         let request = NSURLRequest(URL: LKNetworkTools.sharedInstance.oauthRUL())
         webView.loadRequest(request)
-        
+       
     }
     
-    //MARK: -------------------私有方法-------------------
-    /// 关闭控制器
-    private func close() {
-        // 退出控制器
-        dismissViewControllerAnimated(true, completion: nil)
-        // 关闭正在加载
-        SVProgressHUD.dismiss()
-    }
     
-    // MARK: - 懒加载
-    private lazy var webView = UIWebView()
 
 }
 
@@ -119,23 +131,36 @@ extension LKOauthViewController: UIWebViewDelegate {
             { (result, error) -> () in
             // 如果 出错了 就提示
             if error != nil || result == nil {
-                SVProgressHUD.showErrorWithStatus("网络不给力...", maskType: SVProgressHUDMaskType.Black)
-                
-                // 延迟关闭. dispatch_after 没有提示,可以拖oc的dispatch_after来修改
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
-                    self.close()
-                })
-                return
+               self.netError("网络不给力...")
+               return
             }
             print("result: \(result)")
             // 将数据 给模型
             let account = LKUserAccount(dict: result!)
             // 保存到沙盒
             account.saveAccount()
-            print("account:\(account)")
-            SVProgressHUD.dismiss()
+            // 加载用户数据
+            account.loadUserInfo({ (error) -> () in
+                if error != nil {
+                    print("加载用户数据出错: \(error)")
+                    self.netError("加载用户数据出错...")
+                    return
+                }
+                print("account:\(LKUserAccount.loadAccount())")
+                self.close()
+                // 切换控制器  ---> false 进入 欢迎界面
+                (UIApplication.sharedApplication().delegate as! AppDelegate).switchRootController(false)
+            })
         }
-        
    }
+//MARK: - 出错了 提示 方法
+    private func netError(message: String) {
+        SVProgressHUD.showErrorWithStatus(message, maskType: SVProgressHUDMaskType.Black)
+        
+        // 延迟关闭. dispatch_after 没有提示,可以拖oc的dispatch_after来修改
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+            self.close()
+        })
+    }
 
 }

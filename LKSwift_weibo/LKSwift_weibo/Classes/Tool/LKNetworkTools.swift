@@ -10,17 +10,58 @@ import UIKit
 import AFNetworking
 
 
-class LKNetworkTools: AFHTTPSessionManager  {
+// 创建枚举   empty空
+// emptyTokenE.rawValue 拿到枚举对应的值
+enum LKNetworkError: Int {
+    case emptyToken = -1
+    case emptyUid = -2
+    // 枚举里面可以有属性
+    var description: String {
+        get {
+            // 根据枚举的类型返回对应的错误
+            switch self {
+            case LKNetworkError.emptyToken: //-1
+                return "accecc token 为空"
+            case LKNetworkError.emptyUid: //-2
+                return "uid 为空"
+            }
+        }
 
-    // 创建AFN请求单例
-    static let sharedInstance:LKNetworkTools = {
-       let urlString = "https://api.weibo.com/"
-       let tool = LKNetworkTools(baseURL: NSURL(string: urlString))
-       // 因为解释器 没有text/plain类型  insert添加一个
-       tool.responseSerializer.acceptableContentTypes?.insert("text/plain")
-        
-        return tool
-    }()
+    }
+    // 自定义error
+    // domain: 自定义,表示错误范围
+    // code: 错误代码:自定义.负数开头,
+    // userInfo: 错误附加信息
+    // 枚举可以定义方法
+    func error() -> NSError {
+        return NSError(domain: "cn.itcast.error.network", code: rawValue, userInfo: ["errorDescription" : description])
+    }
+}
+
+class LKNetworkTools: NSObject  {
+
+    // 属性
+    private var afnManager: AFHTTPSessionManager
+    
+    // 创建单例
+    static let sharedInstance: LKNetworkTools = LKNetworkTools()
+    
+    override init() {
+        let urlString = "https://api.weibo.com/"
+        afnManager = AFHTTPSessionManager(baseURL: NSURL(string: urlString))
+        afnManager.responseSerializer.acceptableContentTypes?.insert("text/plain")
+    }
+
+    
+//    // 创建AFN请求单例
+//    static let sharedInstance:LKNetworkTools = {
+//       let urlString = "https://api.weibo.com/"
+//       let tool = LKNetworkTools(baseURL: NSURL(string: urlString))
+//       // 因为解释器 没有text/plain类型  insert添加一个
+//       tool.responseSerializer.acceptableContentTypes?.insert("text/plain")
+//        
+//        return tool
+//    }()
     
     // MARK: - OAtuh授权
     /// 申请应用时分配的AppKey
@@ -62,13 +103,147 @@ class LKNetworkTools: AFHTTPSessionManager  {
             "redirect_uri": redirect_uri
         ]
 //         result: 请求结果 成功回调 失败回调   闭包返回数据
-        POST(urlString, parameters: parameters, success: { (_, result) -> Void in
-            //成功
+        requestPOST(urlString, parameters: parameters, finshed: finshed)
+//        afnManager.POST(urlString, parameters: parameters, success: { (_, result) -> Void in
+//            //成功
+//            finshed(result: result as? [String: AnyObject], error: nil)
+//            }) { (_, error: NSError) -> Void in
+//            //失败
+//            finshed(result: nil, error: error)
+//        }
+    }
+    
+    // MARK: - 获取用户信息 至少需要 access_token 与 uid
+    func loadUserInfo(finshed: (result: [String: AnyObject]?, error: NSError?) -> ()){
+
+//        // 判断accessToken
+//        if LKUserAccount.loadAccount()?.access_token == nil {
+//            print("没有accessToken")
+//            let error = LKNetworkError.emptyToken.error()
+//            // 告诉调用者
+//            finshed(result: nil, error: error)
+//            return
+//        }
+        
+        // 守卫,和可选绑定相反
+        // parameters 代码块里面和外面都能使用
+        guard var parameters = tokenDict() else {
+            // 能到这里来表示 parameters 没有值
+            print("没有accessToken")
+            
+            let error = LKNetworkError.emptyToken.error()
+            // 告诉调用者
+            finshed(result: nil, error: error)
+            return
+        }
+
+        
+        // 判断uid
+        if LKUserAccount.loadAccount()?.uid == nil {
+            print("没有uid")
+            let error = LKNetworkError.emptyUid.error()
+            
+            // 告诉调用者
+            finshed(result: nil, error: error)
+            return
+        }
+        // url
+        let urlString = "2/users/show.json"
+
+        // 参数
+//        let parameters = [
+//            "access_token": LKUserAccount.loadAccount()!.access_token!,
+//            "uid": LKUserAccount.loadAccount()!.uid!
+//        ]
+        // 添加元素   access_token已经在守卫 添加字典了
+        parameters["uid"] = LKUserAccount.loadAccount()!.uid!
+        
+        // 发送请求
+        requestGET(urlString, parameters: parameters, finshed: finshed)
+//        afnManager.GET(urlString, parameters: parameters, success: { (_, result) -> Void in
+//            finshed(result: result as? [String: AnyObject], error: nil)
+//            }) { (_, error) -> Void in
+//                finshed(result: nil, error: error)
+//        }
+    }
+    
+    // MARK: - 获取微博数据
+    func loadStatus(finshed : NetworkFinishedCallback){
+        
+        //        // 可选绑定 ----》 能进去 有值  但参数accessToken 只能在内部使用
+        //        if let accessToken = LKUserAccount.loadAccount()?.access_token{
+        //
+        //            // access token 有值
+        //            let urlString = "2/statuses/home_timeline.json"
+        //
+        //            let parameters = ["access_token":accessToken]
+        //
+        //            requestGET(urlString, parameters: parameters, finshed: finshed)
+        //        }
+        
+        // 守卫,和可选绑定相反
+        // parameters 代码块里面和外面都能使用  能进入方法说明token没有值
+        guard let parameters = tokenDict() else {
+            // 告诉调用者
+            finshed(result: nil, error: LKNetworkError.emptyToken.error())
+            return
+        }
+        let urlString = "2/statuses/home_timeline.json"
+       // GET 获取网络数据
+        requestGET(urlString, parameters: parameters, finshed: finshed)
+
+        // 网络不给力,加载本地数据
+//        loadLocalStatus(finished)
+    }
+    //网络 不给里  开发时 可以加载 本地数据    json格式
+    //        private func loadLocalStatus(finished: NetworkFinishedCallback) {
+    //            // 获取路径
+    //            let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
+    //
+    //            // 加载文件数据
+    //            let data = NSData(contentsOfFile: path!)
+    //
+    //            // 转成json
+    //            do {
+    //                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+    //                // 有数据
+    //                finished(result: json as? [String : AnyObject], error: nil)
+    //            } catch {
+    //                print("出异常了")
+    //            }
+
+    
+    //MARK: - 判断access token是否有值,没有值返回nil,如果有值生成一个字典
+    func tokenDict() -> [String: AnyObject]? {
+        if LKUserAccount.loadAccount()?.access_token == nil {
+            return nil
+        }
+        return ["access_token": LKUserAccount.loadAccount()!.access_token!]
+    }
+
+    
+    // MARK: - 类型别名 =OC typedefined  (闭包)block
+    typealias NetworkFinishedCallback = (result:[String: AnyObject]?,
+        error:NSError?)->()
+
+    // MARK: - 封装AFN.GET
+    func requestGET(URLString: String, parameters: AnyObject?,finshed:NetworkFinishedCallback){
+        afnManager.GET(URLString, parameters: parameters, success: { (_, result) -> Void in
             finshed(result: result as? [String: AnyObject], error: nil)
-            }) { (_, error: NSError) -> Void in
-            //失败
+            }) { (_, error) -> Void in
             finshed(result: nil, error: error)
         }
     }
-    
+    // MARK: - 封装AFN.POST
+    func requestPOST(URLString: String, parameters: AnyObject?,finshed:NetworkFinishedCallback){
+        afnManager.POST(URLString, parameters: parameters, success: { (_, result) -> Void in
+            //成功
+             finshed(result: result as? [String: AnyObject], error: nil)
+            }) { (_, error) -> Void in
+            //失败
+             finshed(result: nil, error: error)
+        }
+    }
+
+
 }

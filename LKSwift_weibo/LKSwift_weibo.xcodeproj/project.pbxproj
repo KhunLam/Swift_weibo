@@ -17,8 +17,27 @@
 		25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */; };
 		25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */; };
 		25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */; };
+		250A4D011BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A4D001BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift */; };
+		250A4D031BE5A2EC00E7F616 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A4D021BE5A2EC00E7F616 /* UIColor+Extension.swift */; };
+		250A4D061BE5AC8E00E7F616 /* LKNewFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A4D051BE5AC8E00E7F616 /* LKNewFeatureCell.swift */; };
+		250A4D081BE5D22400E7F616 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A4D071BE5D22400E7F616 /* UIBarButtonItem+Extension.swift */; };
 		252DB1131BE23433008E5A39 /* LKNetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DB1121BE23433008E5A39 /* LKNetworkTools.swift */; };
 		252DB1171BE23824008E5A39 /* LKOauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DB1161BE23824008E5A39 /* LKOauthViewController.swift */; };
+		25BDD2F51BE76E1700A5298E /* LKHomeTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */; };
+		25BDD2F81BE78AB100A5298E /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */; };
+		25CD80791BE83A2200F73EAA /* LKStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD80781BE83A2200F73EAA /* LKStatus.swift */; };
+		25CD807B1BE8561500F73EAA /* LKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD807A1BE8561500F73EAA /* LKUser.swift */; };
+		25CD807E1BE85A8700F73EAA /* LKStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD807D1BE85A8700F73EAA /* LKStatusCell.swift */; };
+		25CD80801BE85BCB00F73EAA /* LKStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD807F1BE85BCB00F73EAA /* LKStatusTopView.swift */; };
+		25CD80821BE860B900F73EAA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD80811BE860B900F73EAA /* UILabel+Extension.swift */; };
+		25D044881BE523C1002181D8 /* LKWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D044871BE523C1002181D8 /* LKWelcomeViewController.swift */; };
+		25E35E8B1BE878D90093C6BE /* LKStatusBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E8A1BE878D90093C6BE /* LKStatusBottomView.swift */; };
+		25E35E8D1BE879820093C6BE /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E8C1BE879820093C6BE /* UIButton+Extension.swift */; };
+		25E35E8F1BE879BE0093C6BE /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E8E1BE879BE0093C6BE /* UIScreen+Extension.swift */; };
+		25E35E911BE889DA0093C6BE /* LKStatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E901BE889DA0093C6BE /* LKStatusPictureView.swift */; };
+		25E35E931BE8A9B10093C6BE /* LKStatusForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E921BE8A9B10093C6BE /* LKStatusForwardCell.swift */; };
+		25E35E951BE8B00D0093C6BE /* LKStatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E941BE8B00D0093C6BE /* LKStatusNormalCell.swift */; };
+		25E35E971BE8CCA20093C6BE /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E961BE8CCA20093C6BE /* UIImageView+Extension.swift */; };
 		25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */; };
 		25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F61BDE8D320064ECAD /* LKVistorView.swift */; };
 		25F6B4A91BE28709005C1329 /* LKUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F6B4A81BE28709005C1329 /* LKUserAccount.swift */; };
@@ -60,8 +79,27 @@
 		25085E4A1BDE53340060A150 /* LKMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKMessageTableViewController.swift; sourceTree = "<group>"; };
 		25085E4C1BDE53510060A150 /* LKDiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKDiscoverTableViewController.swift; sourceTree = "<group>"; };
 		25085E4E1BDE53600060A150 /* LKProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKProfileTableViewController.swift; sourceTree = "<group>"; };
+		250A4D001BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKNewFeatureCollectionViewController.swift; sourceTree = "<group>"; };
+		250A4D021BE5A2EC00E7F616 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		250A4D051BE5AC8E00E7F616 /* LKNewFeatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKNewFeatureCell.swift; sourceTree = "<group>"; };
+		250A4D071BE5D22400E7F616 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		252DB1121BE23433008E5A39 /* LKNetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKNetworkTools.swift; sourceTree = "<group>"; };
 		252DB1161BE23824008E5A39 /* LKOauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKOauthViewController.swift; sourceTree = "<group>"; };
+		25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKHomeTitleButton.swift; sourceTree = "<group>"; };
+		25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		25CD80781BE83A2200F73EAA /* LKStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatus.swift; sourceTree = "<group>"; };
+		25CD807A1BE8561500F73EAA /* LKUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKUser.swift; sourceTree = "<group>"; };
+		25CD807D1BE85A8700F73EAA /* LKStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusCell.swift; sourceTree = "<group>"; };
+		25CD807F1BE85BCB00F73EAA /* LKStatusTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusTopView.swift; sourceTree = "<group>"; };
+		25CD80811BE860B900F73EAA /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		25D044871BE523C1002181D8 /* LKWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWelcomeViewController.swift; sourceTree = "<group>"; };
+		25E35E8A1BE878D90093C6BE /* LKStatusBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusBottomView.swift; sourceTree = "<group>"; };
+		25E35E8C1BE879820093C6BE /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		25E35E8E1BE879BE0093C6BE /* UIScreen+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		25E35E901BE889DA0093C6BE /* LKStatusPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusPictureView.swift; sourceTree = "<group>"; };
+		25E35E921BE8A9B10093C6BE /* LKStatusForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusForwardCell.swift; sourceTree = "<group>"; };
+		25E35E941BE8B00D0093C6BE /* LKStatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusNormalCell.swift; sourceTree = "<group>"; };
+		25E35E961BE8CCA20093C6BE /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKBaseTableViewController.swift; sourceTree = "<group>"; };
 		25F672F61BDE8D320064ECAD /* LKVistorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKVistorView.swift; sourceTree = "<group>"; };
 		25F6B4A81BE28709005C1329 /* LKUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKUserAccount.swift; sourceTree = "<group>"; };
@@ -162,6 +200,12 @@
 		25085DC61BDE48020060A150 /* Extension(延展) */ = {
 			isa = PBXGroup;
 			children = (
+				250A4D021BE5A2EC00E7F616 /* UIColor+Extension.swift */,
+				250A4D071BE5D22400E7F616 /* UIBarButtonItem+Extension.swift */,
+				25CD80811BE860B900F73EAA /* UILabel+Extension.swift */,
+				25E35E8C1BE879820093C6BE /* UIButton+Extension.swift */,
+				25E35E8E1BE879BE0093C6BE /* UIScreen+Extension.swift */,
+				25E35E961BE8CCA20093C6BE /* UIImageView+Extension.swift */,
 			);
 			name = "Extension(延展)";
 			path = Extension;
@@ -170,6 +214,7 @@
 		25085DC71BDE48020060A150 /* Library（库） */ = {
 			isa = PBXGroup;
 			children = (
+				25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */,
 			);
 			name = "Library（库）";
 			path = Library;
@@ -179,6 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				25F6B4A81BE28709005C1329 /* LKUserAccount.swift */,
+				25CD80781BE83A2200F73EAA /* LKStatus.swift */,
+				25CD807A1BE8561500F73EAA /* LKUser.swift */,
 			);
 			name = "Model（全局模型）";
 			path = Model;
@@ -187,6 +234,7 @@
 		25085DC91BDE48020060A150 /* Module（模块） */ = {
 			isa = PBXGroup;
 			children = (
+				25D044851BE5237D002181D8 /* NewFeature(欢迎  新特性) */,
 				252DB1141BE237F8008E5A39 /* Oauth(授权) */,
 				25085DDE1BDE48020060A150 /* Test（测试） */,
 				25085DD21BDE48020060A150 /* Main（主要的） */,
@@ -261,6 +309,8 @@
 		25085DD11BDE48020060A150 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25CD807C1BE85A5600F73EAA /* cell */,
+				25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -407,6 +457,14 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		250A4D041BE5AC3D00E7F616 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				250A4D051BE5AC8E00E7F616 /* LKNewFeatureCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		252DB1141BE237F8008E5A39 /* Oauth(授权) */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +478,38 @@
 			isa = PBXGroup;
 			children = (
 				252DB1161BE23824008E5A39 /* LKOauthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		25CD807C1BE85A5600F73EAA /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				25CD807D1BE85A8700F73EAA /* LKStatusCell.swift */,
+				25E35E941BE8B00D0093C6BE /* LKStatusNormalCell.swift */,
+				25E35E921BE8A9B10093C6BE /* LKStatusForwardCell.swift */,
+				25CD807F1BE85BCB00F73EAA /* LKStatusTopView.swift */,
+				25E35E8A1BE878D90093C6BE /* LKStatusBottomView.swift */,
+				25E35E901BE889DA0093C6BE /* LKStatusPictureView.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		25D044851BE5237D002181D8 /* NewFeature(欢迎  新特性) */ = {
+			isa = PBXGroup;
+			children = (
+				25D044861BE5237D002181D8 /* Controller */,
+				250A4D041BE5AC3D00E7F616 /* View */,
+			);
+			name = "NewFeature(欢迎  新特性)";
+			path = NewFeature;
+			sourceTree = "<group>";
+		};
+		25D044861BE5237D002181D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				25D044871BE523C1002181D8 /* LKWelcomeViewController.swift */,
+				250A4D001BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -626,17 +716,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */,
+				25E35E8B1BE878D90093C6BE /* LKStatusBottomView.swift in Sources */,
 				25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */,
+				25CD80801BE85BCB00F73EAA /* LKStatusTopView.swift in Sources */,
 				25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */,
+				25E35E931BE8A9B10093C6BE /* LKStatusForwardCell.swift in Sources */,
+				25D044881BE523C1002181D8 /* LKWelcomeViewController.swift in Sources */,
 				252DB1131BE23433008E5A39 /* LKNetworkTools.swift in Sources */,
 				25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */,
 				25F6B4A91BE28709005C1329 /* LKUserAccount.swift in Sources */,
+				25CD80821BE860B900F73EAA /* UILabel+Extension.swift in Sources */,
+				250A4D011BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift in Sources */,
+				25CD80791BE83A2200F73EAA /* LKStatus.swift in Sources */,
 				25085E491BDE53240060A150 /* LKHomeTableViewController.swift in Sources */,
+				25CD807B1BE8561500F73EAA /* LKUser.swift in Sources */,
+				25E35E8F1BE879BE0093C6BE /* UIScreen+Extension.swift in Sources */,
+				250A4D031BE5A2EC00E7F616 /* UIColor+Extension.swift in Sources */,
+				25E35E8D1BE879820093C6BE /* UIButton+Extension.swift in Sources */,
 				252DB1171BE23824008E5A39 /* LKOauthViewController.swift in Sources */,
 				25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */,
+				25CD807E1BE85A8700F73EAA /* LKStatusCell.swift in Sources */,
 				25085D951BDE45770060A150 /* AppDelegate.swift in Sources */,
+				25BDD2F81BE78AB100A5298E /* UIView+AutoLayout.swift in Sources */,
+				25E35E971BE8CCA20093C6BE /* UIImageView+Extension.swift in Sources */,
 				25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */,
+				250A4D061BE5AC8E00E7F616 /* LKNewFeatureCell.swift in Sources */,
+				25E35E951BE8B00D0093C6BE /* LKStatusNormalCell.swift in Sources */,
 				25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */,
+				25BDD2F51BE76E1700A5298E /* LKHomeTitleButton.swift in Sources */,
+				25E35E911BE889DA0093C6BE /* LKStatusPictureView.swift in Sources */,
+				250A4D081BE5D22400E7F616 /* UIBarButtonItem+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
