@@ -168,7 +168,13 @@ class LKNetworkTools: NSObject  {
     }
     
     // MARK: - 获取微博数据
-    func loadStatus(finshed : NetworkFinishedCallback){
+    /**
+    加载微博数据  刷新  --与--  加载之前的
+    - parameter since_id: 若指定此参数，则返回ID比since_id大的微博,默认为0
+    - parameter max_id:   若指定此参数，则返回ID小于或等于max_id的微博,默认为0
+    - parameter finished: 回调 参数
+    */
+    func loadStatus(since_id: Int, max_id: Int,finshed : NetworkFinishedCallback){
         
         //        // 可选绑定 ----》 能进去 有值  但参数accessToken 只能在内部使用
         //        if let accessToken = LKUserAccount.loadAccount()?.access_token{
@@ -183,11 +189,20 @@ class LKNetworkTools: NSObject  {
         
         // 守卫,和可选绑定相反
         // parameters 代码块里面和外面都能使用  能进入方法说明token没有值
-        guard let parameters = tokenDict() else {
+        guard var parameters = tokenDict() else {
             // 告诉调用者
             finshed(result: nil, error: LKNetworkError.emptyToken.error())
             return
         }
+        // 添加参数 since_id和max_id
+        // 判断是否有传since_id,max_id
+        if since_id > 0 {
+            parameters["since_id"] = since_id
+        } else if max_id > 0 {
+            // 会吧最后一条微博返回 -- 多减一
+            parameters["max_id"] = max_id - 1
+        }
+        
         let urlString = "2/statuses/home_timeline.json"
        // GET 获取网络数据
         requestGET(urlString, parameters: parameters, finshed: finshed)
@@ -210,9 +225,13 @@ class LKNetworkTools: NSObject  {
     //                finished(result: json as? [String : AnyObject], error: nil)
     //            } catch {
     //                print("出异常了")
+    //                如果do里面的代码出错了,不会崩溃,会走这里
+    // 强制try 如果这句代码有错误,程序立即停止运行
+    // let statusesJson = try! NSJSONSerialization.JSONObjectWithData(nsData, options: NSJSONReadingOptions(rawValue: 0))
     //            }
 
     
+       
     //MARK: - 判断access token是否有值,没有值返回nil,如果有值生成一个字典
     func tokenDict() -> [String: AnyObject]? {
         if LKUserAccount.loadAccount()?.access_token == nil {

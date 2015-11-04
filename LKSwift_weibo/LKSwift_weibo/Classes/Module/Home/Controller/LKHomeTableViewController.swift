@@ -38,25 +38,82 @@ class LKHomeTableViewController: LKBaseTableViewController {
         // talbeView注册cell
         prepareTableView()
         
-        LKStatus.loadStatus { (statuses, error) -> () in
+
+        
+      //        loadData()
+        //刷新控件  高度默认60
+        // 自定义 UIRefreshControl,在 自定义的UIRefreshControl添加自定义的view
+//        refreshControl = UIRefreshControl()
+        refreshControl = LKRefreshControl()
+        
+        refreshControl?.addTarget(self, action: "loadData", forControlEvents: UIControlEvents.ValueChanged)
+        
+        // 调用beginRefreshing开始刷新,但是不会触发 ValueChanged 事件,只会让刷新控件进入刷新状态 --不会触发
+        refreshControl?.beginRefreshing()
+        // 刚进入界面 主动代码触发 refreshControl 的 ValueChanged 事件
+        refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+    }
+    
+    //MARK: - 加载数据
+    func loadData(){
+        // 默认下拉刷新,获取id最大的微博, 如果没有数据,就默认加载20
+        var since_id = statuses?.first?.id ?? 0
+        var max_id = 0
+        
+        // 如果上拉菊花正在转,表示 上拉加载更多之前的数据
+        if pullUpView.isAnimating() {
+            // 上拉加载更多数据
+            since_id = 0
+            max_id = statuses?.last?.id ?? 0 // 设置为最后一条微博的id
+        }
+
+         //模型返回数据
+        LKStatus.loadStatus(since_id, max_id: max_id){ (statuses, error) -> () in
+            
+             //加载到数据 就 关闭下拉刷新控件
+            self.refreshControl?.endRefreshing()
+            
+            //加载到数据 就将 上拉菊花停止
+            self.pullUpView.stopAnimating()
+            
             if error != nil {
                 // 能到下面来说明有错误
-                SVProgressHUD.showErrorWithStatus("加载微博数据失败,网络不给力", maskType: SVProgressHUDMaskType.Black)
+                SVProgressHUD.showErrorWithStatus("网络连接失败", maskType: SVProgressHUDMaskType.Black)
                 
                 return
             }
+            
+            // 下拉刷新,显示加载了多少条微博
+            if since_id > 0 {
+                let count = statuses?.count ?? 0
+                self.showTipView(count)
+            }
+
             
             if statuses == nil || statuses?.count == 0 {
                 // 能到下面来说明没有数据
                 SVProgressHUD.showInfoWithStatus("没有新的微博数据", maskType: SVProgressHUDMaskType.Black)
                 return
             }
-            // 有微博数据
-            self.statuses = statuses
-//            print("statuses: \(statuses)")
+            // 判断如果是下拉刷新,加获取到数据拼接在现有数据的前
+            if since_id > 0 {   // 下拉刷新
+                // 最新数据 =  新获取到的数据 + 原有的数据
+                print("下拉刷新,获取到: \(statuses?.count)");
+               self.statuses = statuses! + self.statuses!
+            }else if max_id > 0 {  // 上拉加载更多数据
+                // 最新数据 =  原有的数据 + 新获取到的数据
+                print("上拉加载更多数据,获取到: \(statuses?.count)");
+                self.statuses = self.statuses! + statuses!
+            }else{
+                 self.statuses = statuses
+                 print("获取最新20条数据.获取到 \(statuses?.count) 条微博")
+            }
+            
+            
 
+            
         }
-        
+
     }
     
     // MARK: - tableView 代理和数据源
@@ -68,10 +125,21 @@ class LKHomeTableViewController: LKBaseTableViewController {
         // 获取模型
         let status = statuses![indexPath.row]
         
-        // 获取cell
+        // 获取.cell
         let cell = tableView.dequeueReusableCellWithIdentifier(status.cellID()) as! LKStatusCell
         
         cell.status = status
+        
+        // 当最后一个cell显示的时候来加载更多微博数据
+        // 如果菊花正在显示,就表示正在加载数据,就不加载数据
+        if indexPath.row == statuses!.count - 1  && !pullUpView.isAnimating() {
+            // 上拉菊花转起来
+            pullUpView.startAnimating()
+            
+            // 上拉加载更多数据
+            loadData()
+        }
+
         
         return  cell
         
@@ -129,7 +197,61 @@ class LKHomeTableViewController: LKBaseTableViewController {
 //        tableView.rowHeight = UITableViewAutomaticDimension
         
          // 当配图的高度约束修改后,添加bottomView的底部和contenView底部重合,导致系统计算cell高度约束出错.不能让系统来根据子控件的约束来计算contentView高度约束
+        
+        // 添加footView,上拉加载更多数据的菊花
+        tableView.tableFooterView = pullUpView
+
     }
+    
+    //MARK: -显示下拉刷新加载了多少条微博
+    private func showTipView(count: Int) {
+       
+        let tipLabelHeight: CGFloat = 44
+        let tipLabel = UILabel()
+        // 它的始起点在 左上角 y为 20 （状态栏下面）
+        tipLabel.frame = CGRect(x: 0, y: -20 - tipLabelHeight, width: UIScreen.width(), height: tipLabelHeight)
+        
+        tipLabel.textColor = UIColor.whiteColor()
+        tipLabel.backgroundColor = UIColor.orangeColor()
+        tipLabel.font = UIFont.systemFontOfSize(16)
+        tipLabel.textAlignment = NSTextAlignment.Center
+        
+        tipLabel.text = count == 0 ? "没有新的微博" : "加载了 \(count) 条微博"
+
+        // 导航栏是从状态栏下面开始
+        // 添加到导航栏最下面
+        navigationController?.navigationBar.insertSubview(tipLabel, atIndex: 0)
+        //停留时间
+        let duration = 0.75
+        // 开始动画
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            /* 
+            让动画反过来执行
+            UIView.setAnimationRepeatAutoreverses(true)
+            然后在动画后 消除
+            tipLabel.removeFromSuperview()
+             */
+            // 重复执行 UIView.setAnimationRepeatCount(5)
+            
+            
+            tipLabel.frame.origin.y = tipLabelHeight
+            
+            }) { (_) -> Void in
+                
+                UIView.animateWithDuration(duration, delay: 0.3, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+        
+                    tipLabel.frame.origin.y = -20 - tipLabelHeight
+                    
+                    }, completion: { (_) -> Void in
+                        
+                        tipLabel.removeFromSuperview()
+                })
+        }
+        
+        
+    }
+    
+
     
     
     //MARK: -设置导航栏
@@ -197,5 +319,17 @@ class LKHomeTableViewController: LKBaseTableViewController {
     }
     
     }
+    
+    // MARK: - 懒加载
+    /// 上拉加载更多数据显示的菊花   ---活动指示器视图（菊花控制器）
+    private lazy var pullUpView: UIActivityIndicatorView = {
+            //指示器菊花
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        
+        indicator.color = UIColor.magentaColor()
+        
+        return indicator
+    }()
+
     
 }

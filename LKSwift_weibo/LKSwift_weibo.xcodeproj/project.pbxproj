@@ -23,6 +23,9 @@
 		250A4D081BE5D22400E7F616 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A4D071BE5D22400E7F616 /* UIBarButtonItem+Extension.swift */; };
 		252DB1131BE23433008E5A39 /* LKNetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DB1121BE23433008E5A39 /* LKNetworkTools.swift */; };
 		252DB1171BE23824008E5A39 /* LKOauthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DB1161BE23824008E5A39 /* LKOauthViewController.swift */; };
+		2532C4C61BE9CE2200CCEA65 /* LKRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532C4C51BE9CE2200CCEA65 /* LKRefreshControl.swift */; };
+		2532C4C81BE9CE6400CCEA65 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2532C4C71BE9CE6400CCEA65 /* RefreshView.xib */; };
+		2532C4CE1BEA002900CCEA65 /* LKComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532C4CD1BEA002900CCEA65 /* LKComposeViewController.swift */; };
 		25BDD2F51BE76E1700A5298E /* LKHomeTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */; };
 		25BDD2F81BE78AB100A5298E /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */; };
 		25CD80791BE83A2200F73EAA /* LKStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD80781BE83A2200F73EAA /* LKStatus.swift */; };
@@ -85,6 +88,9 @@
 		250A4D071BE5D22400E7F616 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		252DB1121BE23433008E5A39 /* LKNetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKNetworkTools.swift; sourceTree = "<group>"; };
 		252DB1161BE23824008E5A39 /* LKOauthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKOauthViewController.swift; sourceTree = "<group>"; };
+		2532C4C51BE9CE2200CCEA65 /* LKRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKRefreshControl.swift; sourceTree = "<group>"; };
+		2532C4C71BE9CE6400CCEA65 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
+		2532C4CD1BEA002900CCEA65 /* LKComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKComposeViewController.swift; sourceTree = "<group>"; };
 		25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKHomeTitleButton.swift; sourceTree = "<group>"; };
 		25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		25CD80781BE83A2200F73EAA /* LKStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatus.swift; sourceTree = "<group>"; };
@@ -234,6 +240,7 @@
 		25085DC91BDE48020060A150 /* Module（模块） */ = {
 			isa = PBXGroup;
 			children = (
+				2532C4C91BE9FFD600CCEA65 /* Compose（发微博） */,
 				25D044851BE5237D002181D8 /* NewFeature(欢迎  新特性) */,
 				252DB1141BE237F8008E5A39 /* Oauth(授权) */,
 				25085DDE1BDE48020060A150 /* Test（测试） */,
@@ -309,6 +316,7 @@
 		25085DD11BDE48020060A150 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2532C4C41BE9CDD700CCEA65 /* RefreshControl */,
 				25CD807C1BE85A5600F73EAA /* cell */,
 				25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */,
 			);
@@ -482,6 +490,48 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		2532C4C41BE9CDD700CCEA65 /* RefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				2532C4C51BE9CE2200CCEA65 /* LKRefreshControl.swift */,
+				2532C4C71BE9CE6400CCEA65 /* RefreshView.xib */,
+			);
+			path = RefreshControl;
+			sourceTree = "<group>";
+		};
+		2532C4C91BE9FFD600CCEA65 /* Compose（发微博） */ = {
+			isa = PBXGroup;
+			children = (
+				2532C4CA1BE9FFD600CCEA65 /* Controller */,
+				2532C4CB1BE9FFD600CCEA65 /* Model */,
+				2532C4CC1BE9FFD600CCEA65 /* View */,
+			);
+			name = "Compose（发微博）";
+			path = Compose;
+			sourceTree = "<group>";
+		};
+		2532C4CA1BE9FFD600CCEA65 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2532C4CD1BEA002900CCEA65 /* LKComposeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2532C4CB1BE9FFD600CCEA65 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2532C4CC1BE9FFD600CCEA65 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		25CD807C1BE85A5600F73EAA /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2532C4C81BE9CE6400CCEA65 /* RefreshView.xib in Resources */,
 				25085D9F1BDE45780060A150 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +779,7 @@
 				25CD80821BE860B900F73EAA /* UILabel+Extension.swift in Sources */,
 				250A4D011BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift in Sources */,
 				25CD80791BE83A2200F73EAA /* LKStatus.swift in Sources */,
+				2532C4CE1BEA002900CCEA65 /* LKComposeViewController.swift in Sources */,
 				25085E491BDE53240060A150 /* LKHomeTableViewController.swift in Sources */,
 				25CD807B1BE8561500F73EAA /* LKUser.swift in Sources */,
 				25E35E8F1BE879BE0093C6BE /* UIScreen+Extension.swift in Sources */,
@@ -739,6 +791,7 @@
 				25085D951BDE45770060A150 /* AppDelegate.swift in Sources */,
 				25BDD2F81BE78AB100A5298E /* UIView+AutoLayout.swift in Sources */,
 				25E35E971BE8CCA20093C6BE /* UIImageView+Extension.swift in Sources */,
+				2532C4C61BE9CE2200CCEA65 /* LKRefreshControl.swift in Sources */,
 				25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */,
 				250A4D061BE5AC8E00E7F616 /* LKNewFeatureCell.swift in Sources */,
 				25E35E951BE8B00D0093C6BE /* LKStatusNormalCell.swift in Sources */,

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+
 
 class LKStatus: NSObject {
     
@@ -14,7 +16,8 @@ class LKStatus: NSObject {
     var created_at: String?
     
     /// 字符串型的微博ID
-    var idstr: String?
+    
+    var id: Int = 0
     
     /// 微博信息内容
     var text: String?
@@ -129,10 +132,11 @@ class LKStatus: NSObject {
     
     /// 加载微博数据
     /// 没有模型对象就能加载数据
-    class func loadStatus(finished: (statuses: [LKStatus]?, error: NSError?) -> ()) {
+    class func loadStatus(since_id: Int, max_id: Int,finished: (statuses: [LKStatus]?, error: NSError?) -> ()) {
         
-        LKNetworkTools.sharedInstance.loadStatus { (result, error) -> () in
-           
+         // 尾随闭包,当尾随闭包前面没有参数的时候()可以省略
+//        LKNetworkTools.sharedInstance.loadStatus { (result, error) -> () in
+          LKNetworkTools.sharedInstance.loadStatus(since_id, max_id: max_id){ (result, error) -> () in
             if error != nil {
                 print("error:\(error)")
                 // 通知调用者
@@ -147,6 +151,8 @@ class LKStatus: NSObject {
                     
                     statuses.append(LKStatus(dict: dict))
                 }
+                // 缓存图片, 通知调用者
+               self.cacheWebImage(statuses, finished: finished)
                 // 字典转模型完成
                 // 通知调用者
                 finished(statuses: statuses, error: nil)
@@ -157,6 +163,78 @@ class LKStatus: NSObject {
 
         }
         
+    }
+    
+    ///  缓存图片
+    class func cacheWebImage(statuses: [LKStatus]? ,finished: (statuses: [LKStatus]?, error: NSError?) -> ()){
+        // 创建任务组
+        let group = dispatch_group_create()
+
+        
+        // 判断是否有模型
+        guard let list = statuses else {
+            // 没有模型
+            return
+        }
+        
+        // 记录缓存图片的大小
+        var length = 0
+
+        
+        // 遍历模型
+        for status in list {
+            // 如果没有图片需要下载,接着遍历下一个
+            let count = status.pictureURLs?.count ?? 0
+            if count == 0 {
+                // 没有图片,遍历下一个模型
+                continue
+            }
+            
+            
+            // 判断是否有图片需要下载
+            if let urls = status.pictureURLs{
+                // 有需要缓存的图片,遍历,一张-张缓存
+                if urls.count == 1 {
+                    let url = urls[0]
+                
+                    // 在缓存之前放到任务组里面
+                    dispatch_group_enter(group)
+                    // 设置多个枚举  用数组
+                    //SDWebImageOptions([SDWebImageOptions.RefreshCached, SDWebImageOptions.LowPriority])
+                    // 缓存图片
+                    SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _, _) -> Void in
+                        
+                        // 离开组
+                        dispatch_group_leave(group)
+                        
+                        // 判断有没有错误
+                        if error != nil {
+//                            print("下载图片出错:\(url)")
+                            return
+                        }
+                        // 没有出错
+//                        print("下载图片完成:\(url)")
+
+                        // 记录下载图片的大小
+                        if let data = UIImagePNGRepresentation(image) {
+                            length += data.length
+                        }
+
+                        
+                    })
+                    
+                }
+
+            }
+        
+        }
+        // 所有图片都下载完,在通知调用者
+        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+//            print("所有图片下载完成,告诉调用者获取到了微博数据:大小:\(length / 1024)")
+            // 通知调用者,已经有数据
+            finished(statuses: statuses, error: nil)
+        }
+
     }
     
 }

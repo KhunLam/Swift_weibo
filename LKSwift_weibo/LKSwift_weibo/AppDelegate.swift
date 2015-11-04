@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     /// 导航栏属性
-    private func setupAppearance(){
+     func setupAppearance(){
         // 尽早设置
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
     }

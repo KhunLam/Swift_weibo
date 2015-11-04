@@ -64,12 +64,7 @@ class LKMainTabBarViewController: UITabBarController {
 
     }
     
-        // MARK - 点击事件
-    ///撰写按钮 被点击
-   private func composeButtonClick() {
-        // __FUNCTION__ 打印方法名称
-        print(__FUNCTION__)
-    }
+   
 
     
     //  MARK: - 懒加载
@@ -87,5 +82,16 @@ class LKMainTabBarViewController: UITabBarController {
         return button
     }()
    
+
+    // MARK - 点击事件
+    ///撰写按钮 被点击
+     func composeButtonClick() {
+        // 判断如果没有登录,就到登陆界面,否则就到发微博界面
+        let vc = LKUserAccount.userLogin() ? LKComposeViewController() : LKOauthViewController()
+        // 弹出对应的控制器
+        presentViewController(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+    
+    }
+
 
 }
