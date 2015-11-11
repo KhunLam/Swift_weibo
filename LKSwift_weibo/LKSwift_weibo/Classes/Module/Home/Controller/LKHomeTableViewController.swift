@@ -37,22 +37,63 @@ class LKHomeTableViewController: LKBaseTableViewController {
         setupNavigaiotnBar()
         // talbeView注册cell
         prepareTableView()
+        // 刷新控制器
+        RefreshControl()
         
+        // 注册配图点击后的通知 --弹出大图显示控制器
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "selectedPicture:", name: LKStatusPictureViewCellSelectedPictureNotification, object: nil)
+        // 转场动画  弹出框退出时 使title箭头选中取消
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popoverDismiss", name: "PopoverDismiss", object: nil)
+        }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func popoverDismiss() {
+        // 把title按钮转回去
+        // 拿到按钮
+        let button = navigationItem.titleView as! UIButton
+        // 消息 = 点击多一次
+        homeButtonClick(button)
+    }
+
+    
+    /// 配图视图 cell 点击的 处理方法
+    func selectedPicture(notification: NSNotification) {
+//        print("notification:\(notification)")
+        //Waring DO
+        
+        //拿到 点击cell 对应的图片
+        guard let models = notification.userInfo?[LKStatusPictureViewCellSelectedPictureModelKey] as? [LKPhotoBrowserModel] else {
+            print("models有问题")
+            return
+        }
+        //拿到 点击cell 对应的图片 URL 与 索引
+//        guard let urls = notification.userInfo?[LKStatusPictureViewCellSelectedPictureURLKey] as? [NSURL] else {
+//            print("urls有问题")
+//            return
+//        }
+        
+        guard let index = notification.userInfo?[LKStatusPictureViewCellSelectedPictureIndexKey] as? Int else {
+            print("index有问题")
+            return
+        }
 
         
-      //        loadData()
-        //刷新控件  高度默认60
-        // 自定义 UIRefreshControl,在 自定义的UIRefreshControl添加自定义的view
-//        refreshControl = UIRefreshControl()
-        refreshControl = LKRefreshControl()
+//         弹出控制器
+        let photoBrowserVC = LKPhotoBrowserViewController(models: models, selectedIndex: index)
         
-        refreshControl?.addTarget(self, action: "loadData", forControlEvents: UIControlEvents.ValueChanged)
+        // 设置代理
+        photoBrowserVC.transitioningDelegate = photoBrowserVC
         
-        // 调用beginRefreshing开始刷新,但是不会触发 ValueChanged 事件,只会让刷新控件进入刷新状态 --不会触发
-        refreshControl?.beginRefreshing()
-        // 刚进入界面 主动代码触发 refreshControl 的 ValueChanged 事件
-        refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        // 设置modal样式
+        photoBrowserVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+        
+        presentViewController(photoBrowserVC, animated: true, completion: nil)
+
     }
+
     
     //MARK: - 加载数据
     func loadData(){
@@ -66,7 +107,7 @@ class LKHomeTableViewController: LKBaseTableViewController {
             since_id = 0
             max_id = statuses?.last?.id ?? 0 // 设置为最后一条微博的id
         }
-
+//        print("****since_id***\(since_id)*********max_id***\(max_id)***")
          //模型返回数据
         LKStatus.loadStatus(since_id, max_id: max_id){ (statuses, error) -> () in
             
@@ -98,15 +139,15 @@ class LKHomeTableViewController: LKBaseTableViewController {
             // 判断如果是下拉刷新,加获取到数据拼接在现有数据的前
             if since_id > 0 {   // 下拉刷新
                 // 最新数据 =  新获取到的数据 + 原有的数据
-                print("下拉刷新,获取到: \(statuses?.count)");
+//                print("下拉刷新,获取到: \(statuses?.count)");
                self.statuses = statuses! + self.statuses!
             }else if max_id > 0 {  // 上拉加载更多数据
                 // 最新数据 =  原有的数据 + 新获取到的数据
-                print("上拉加载更多数据,获取到: \(statuses?.count)");
+//                print("上拉加载更多数据,获取到: \(statuses?.count)");
                 self.statuses = self.statuses! + statuses!
             }else{
                  self.statuses = statuses
-                 print("获取最新20条数据.获取到 \(statuses?.count) 条微博")
+//                 print("获取最新20条数据.获取到 \(statuses?.count) 条微博")
             }
             
             
@@ -135,7 +176,7 @@ class LKHomeTableViewController: LKBaseTableViewController {
         if indexPath.row == statuses!.count - 1  && !pullUpView.isAnimating() {
             // 上拉菊花转起来
             pullUpView.startAnimating()
-            
+            print("\(pullUpView.isAnimating())")
             // 上拉加载更多数据
             loadData()
         }
@@ -200,8 +241,26 @@ class LKHomeTableViewController: LKBaseTableViewController {
         
         // 添加footView,上拉加载更多数据的菊花
         tableView.tableFooterView = pullUpView
+        
 
     }
+    //MARK: - 创建RefreshControl刷新控制器
+    private func RefreshControl() {
+    //        loadData()
+    //刷新控件  高度默认60
+    // 自定义 UIRefreshControl,在 自定义的UIRefreshControl添加自定义的view
+    //        refreshControl = UIRefreshControl()
+    refreshControl = LKRefreshControl()
+    
+    refreshControl?.addTarget(self, action: "loadData", forControlEvents: UIControlEvents.ValueChanged)
+    
+    // 调用beginRefreshing开始刷新,但是不会触发 ValueChanged 事件,只会让刷新控件进入刷新状态 --不会触发
+    refreshControl?.beginRefreshing()
+    // 刚进入界面 主动代码触发 refreshControl 的 ValueChanged 事件
+    refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+
+    }
+    
     
     //MARK: -显示下拉刷新加载了多少条微博
     private func showTipView(count: Int) {
@@ -278,52 +337,10 @@ class LKHomeTableViewController: LKBaseTableViewController {
         navigationItem.titleView = button
     }
     
-//private私自方法 若要 OC方法（如点击方法）可以访问 要加@objc
- @objc private func homeButtonClick(button: UIButton){
-//        print("homeButtonClick")
-    
-        // 记录按钮箭头的状态  或直接点击后   状态取反
-    
-    //        if button.selected {
-    //            button.selected = false
-    //        } else {
-    //            button.selected = true
-    //        }
-         button.selected = !button.selected
-    
-    // 判断 selected = true 将箭头转到上面
-    //        if button.selected {
-    //               动画特性
-    //            // UIView动画,就近. 270 = 360 - 90，就近转90
-    //            // 当两边一样远的时候顺时针.
-    //
-    //            UIView.animateWithDuration(0.25, animations: { () -> Void in
-    //                button.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI - 0.01))
-    //            })
-    //        } else {
-    //            UIView.animateWithDuration(0.25, animations: { () -> Void in
-    //                button.imageView?.transform = CGAffineTransformIdentity
-    //            })
-    //        }
-    // 简单 旋转方法  先定义一个 属性 记录
-    var transform: CGAffineTransform?
-    if button.selected {
-        transform = CGAffineTransformMakeRotation(CGFloat(M_PI - 0.00001))
-    } else {
-        transform = CGAffineTransformIdentity
-    }
-    // 动画
-    UIView.animateWithDuration(0.25) { () -> Void in
-        button.imageView?.transform = transform!
-        
-    }
-    
-    }
-    
     // MARK: - 懒加载
     /// 上拉加载更多数据显示的菊花   ---活动指示器视图（菊花控制器）
     private lazy var pullUpView: UIActivityIndicatorView = {
-            //指示器菊花
+        //指示器菊花
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         
         indicator.color = UIColor.magentaColor()
@@ -331,5 +348,87 @@ class LKHomeTableViewController: LKBaseTableViewController {
         return indicator
     }()
 
+}
+//MARK: - 点击title Btn 弹出显示框
+// MARK: -扩展 CZHomeTableViewController 实现 UIViewControllerTransitioningDelegate 协议
+extension LKHomeTableViewController: UIViewControllerTransitioningDelegate {
+
+    //private私自方法 若要 OC方法（如点击方法）可以访问 要加@objc
+    @objc private func homeButtonClick(button: UIButton){
+        //        print("homeButtonClick")
+        
+        // 记录按钮箭头的状态  或直接点击后   状态取反
+        
+        //        if button.selected {
+        //            button.selected = false
+        //        } else {
+        //            button.selected = true
+        //        }
+        button.selected = !button.selected
+        
+        // 判断 selected = true 将箭头转到上面
+        //        if button.selected {
+        //               动画特性
+        //            // UIView动画,就近. 270 = 360 - 90，就近转90
+        //            // 当两边一样远的时候顺时针.
+        //
+        //            UIView.animateWithDuration(0.25, animations: { () -> Void in
+        //                button.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI - 0.01))
+        //            })
+        //        } else {
+        //            UIView.animateWithDuration(0.25, animations: { () -> Void in
+        //                button.imageView?.transform = CGAffineTransformIdentity
+        //            })
+        //        }
+        // 简单 旋转方法  先定义一个 属性 记录
+        var transform: CGAffineTransform?
+        if button.selected {
+            transform = CGAffineTransformMakeRotation(CGFloat(M_PI - 0.00001))
+        } else {
+            transform = CGAffineTransformIdentity
+        }
+        // 动画
+        UIView.animateWithDuration(0.25) { () -> Void in
+            button.imageView?.transform = transform!
+        }
+        
+        // 如果按钮时选中的就弹出控制器  --- 自定义转场动画
+        if button.selected {
+            // 创建storyboard
+            let popoverSB = UIStoryboard(name: "Popover", bundle: nil)
+            let popoverVC = popoverSB.instantiateViewControllerWithIdentifier("popoverController")
+            
+            // 实现自定义modal转场动画
+            // 设置转场代理
+            popoverVC.transitioningDelegate = self
+            // 设置控制器的modal展现样式 --自定义 （这样 后面的控制器不会被销毁）
+            popoverVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+            
+            
+            presentViewController(popoverVC, animated: true, completion: nil)
+        }
+        
+    }
     
+    // 返回一个 控制展现(显示) 样式的对象 UIPresentationController
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+        
+        return LKPresentationController(presentedViewController: presented, presentingViewController: presenting)
+        
+    }
+ 
+    /*
+         model 出来的动画 与 dismiss回去的动画相反  --实现方法自定义
+     */
+    // 返回控制 modal时动画 的对象
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        // 自定义对象实现 UIViewControllerAnimatedTransitioning 即可
+        return LKModalAnimation()
+    }
+    // 返回一个 控制dismiss时的动画对象
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return LKDismissAnimation()
+    }
+
+
 }

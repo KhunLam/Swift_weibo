@@ -68,14 +68,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         // 强转拆包为 Double类型
         let currentVersion = Double(versionString)!
-        print("currentVersion: \(currentVersion)")
+//        print("currentVersion: \(currentVersion)")
     
         // 获取到之前的版本号  
         //  设置key
          let sandboxVersionKey = "sandboxVersionKey"
         // 通过key 取得 之前保存的版本号
         let sandboxVersion = NSUserDefaults.standardUserDefaults().doubleForKey(sandboxVersionKey)
-        print("sandboxVersion: \(sandboxVersion)")
+//        print("sandboxVersion: \(sandboxVersion)")
         
         // 保存当前版本号  并同步一下
         NSUserDefaults.standardUserDefaults().setDouble(currentVersion, forKey: sandboxVersionKey)

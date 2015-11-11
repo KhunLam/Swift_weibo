@@ -26,6 +26,13 @@ class LKStatus: NSObject {
     var source: String?
     
     // 模型能直接提供图片的URL数组,外面使用就比较简单
+    /*
+    （缩略图）  thumbnail_pic   :	ww2.sinaimg.cn/thumbnail    /8debe637gw1exs55ik582j20cs0mtgoi.jpg
+    （中等图）  bmiddle_pic     :	ww2.sinaimg.cn/bmiddle      /8debe637gw1exs55ik582j20cs0mtgoi.jpg
+    （大图）    original_pic    :	ww2.sinaimg.cn/large        /8debe637gw1exs55ik582j20cs0mtgoi.jpg
+    
+    geo	:	null
+    */
     /// 微博的配图
     var pic_urls: [[String: AnyObject]]?{
         didSet {
@@ -38,19 +45,34 @@ class LKStatus: NSObject {
                 return
             }
             
-            // 创建storePictureURLs
+            // 创建storePictureURLs,保存缩略图的url地址
             storePictureURLs = [NSURL]()
+            
+            // 保存大图的url地址
+            largeStorePictureURLs = [NSURL]()
+
             
             for dict in pic_urls! {
                 if let urlString = dict["thumbnail_pic"] as? String {
-                    // 有url地址
+                     // 有url地址,创建缩略图NSURL （新浪有提供）
                     storePictureURLs?.append(NSURL(string: urlString)!)
+                    
+                    // 对比得知 图片的URL 只有中间一小部分不一样  替换即可
+                    // 创建大图NSURL, 将小图的url地址中的 thumbnail 替换为 large
+                    let largeUrlString = urlString.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+                    largeStorePictureURLs?.append(NSURL(string: largeUrlString)!)
+
+                    
                 }
             }
         }
 
     }
-    /// 返回 微博的配图 对应的URL数组
+    
+    /// 返回 微博的配图 对应的大图URL数组
+    private var largeStorePictureURLs: [NSURL]?
+
+    /// 返回 微博的配图 对应的缩略图URL数组
     var storePictureURLs: [NSURL]?
     
     /// 如果是原创微博,就返回原创微博的图片,如果是转发微博就返回被转发微博的图片
@@ -63,7 +85,15 @@ class LKStatus: NSObject {
             return retweeted_status == nil ? storePictureURLs : retweeted_status!.storePictureURLs
         }
     }
-    
+    /// 如果是原创微博,就返回原创微博的大图URL,如果是转发微博就返回被转发微博的大图URL
+    var largePictureURLs: [NSURL]? {
+        get {
+            // 1.原创微博: 返回 largeStorePictureURLs
+            // 2.转发微博: 返回 retweeted_status.largeStorePictureURLs
+            return retweeted_status == nil ? largeStorePictureURLs : retweeted_status!.largeStorePictureURLs
+        }
+    }
+
 
     
     /// 用户模型
@@ -119,6 +149,7 @@ class LKStatus: NSObject {
         }
         
         return super.setValue(value, forKey: key)
+        
     }
 
     

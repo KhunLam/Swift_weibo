@@ -126,6 +126,7 @@ class LKRefreshView: UIView{
         anim.toValue = M_PI * 2
         anim.duration = 0.25
         anim.repeatCount = MAXFLOAT
+        // 切换到其它界面 进来会停止  要设为false
         anim.removedOnCompletion = false
         
         // 开始动画,如果名称一样,会先停掉正在执行的,在重新添加

@@ -53,6 +53,14 @@ class LKBaseTableViewController: UITableViewController {
         }
  
     }
+    // 移除LKHomeTableViewController上的所有监听
+    deinit {
+        if self is LKHomeTableViewController {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+        }
+    }
+
+    
     // MAKR: - 通知方法
     func didEnterBackground() {
         // 暂停动画

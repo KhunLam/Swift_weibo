@@ -202,8 +202,10 @@ class LKNetworkTools: NSObject  {
             // 会吧最后一条微博返回 -- 多减一
             parameters["max_id"] = max_id - 1
         }
-        
+        // 网络请求
         let urlString = "2/statuses/home_timeline.json"
+         //调试 Apache 请求
+//        let urlString = "http://localhost/statue/statuses.json"
        // GET 获取网络数据
         requestGET(urlString, parameters: parameters, finshed: finshed)
 
@@ -231,7 +233,68 @@ class LKNetworkTools: NSObject  {
     //            }
 
     
-       
+    // MARK: - 发布微博
+    /**
+    发布微博
+    - parameter image:   微博图片,可能有可能没有
+    - parameter status:   微博文本内容
+    - parameter finished: 回调闭包
+    */
+    func sendStatus(image: UIImage?, status: String, finished: NetworkFinishedCallback) {
+        // 判断token
+        guard var parameters = tokenDict() else {
+            // 能到这里来说明token没有值
+            
+            // 告诉调用者
+            finished(result: nil, error: LKNetworkError.emptyToken.error())
+            return
+        }
+        
+        // token有值, 拼接参数
+        parameters["status"] = status
+        
+        
+        // 判断是否有图片
+        if let im = image {
+            // 有图片,发送带图片的微博
+            let urlString = "https://upload.api.weibo.com/2/statuses/upload.json"
+            //发送 AFMultipartFormData 请求 可以带图片
+            afnManager.POST(urlString, parameters: parameters, constructingBodyWithBlock: { (multipartFormData) -> Void in
+                
+                
+                //multipartFormData ---- 需要给服务器的 图片二进制数据 参数
+                // data: 上传图片的2进制
+                // name: api 上面写的传递参数名称 "pic"(新浪规定)
+                // fileName: 上传到服务器后,保存的名称,没有指定可以随便写
+                // mimeType: 资源类型(新浪规定):
+                // image/png
+                // image/jpeg
+                // image/gif
+                
+                //将图片转为2进制
+               let data = UIImagePNGRepresentation(im)!
+                //
+                multipartFormData.appendPartWithFileData(data, name: "pic", fileName: "sb", mimeType: "image/png")
+                
+                }, success: { (_, result) -> Void in
+                    finished(result: result as? [String: AnyObject], error: nil)
+                }, failure: { (_, error) -> Void in
+                    finished(result: nil, error: error)
+            })
+        } else {
+            // 没有图片
+            // url
+            let urlString = "2/statuses/update.json"
+            
+            afnManager.POST(urlString, parameters: parameters, success: { (_, result) -> Void in
+                finished(result: result as? [String: AnyObject], error: nil)
+                }) { (_, error) -> Void in
+                    finished(result: nil, error: error)
+            }
+        }
+        
+    }
+
     //MARK: - 判断access token是否有值,没有值返回nil,如果有值生成一个字典
     func tokenDict() -> [String: AnyObject]? {
         if LKUserAccount.loadAccount()?.access_token == nil {

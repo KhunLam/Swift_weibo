@@ -26,6 +26,7 @@
 		2532C4C61BE9CE2200CCEA65 /* LKRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532C4C51BE9CE2200CCEA65 /* LKRefreshControl.swift */; };
 		2532C4C81BE9CE6400CCEA65 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2532C4C71BE9CE6400CCEA65 /* RefreshView.xib */; };
 		2532C4CE1BEA002900CCEA65 /* LKComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2532C4CD1BEA002900CCEA65 /* LKComposeViewController.swift */; };
+		2583F5041BEC59B500882545 /* LKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2583F5031BEC59B500882545 /* LKTextView.swift */; };
 		25BDD2F51BE76E1700A5298E /* LKHomeTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */; };
 		25BDD2F81BE78AB100A5298E /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */; };
 		25CD80791BE83A2200F73EAA /* LKStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD80781BE83A2200F73EAA /* LKStatus.swift */; };
@@ -34,6 +35,11 @@
 		25CD80801BE85BCB00F73EAA /* LKStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD807F1BE85BCB00F73EAA /* LKStatusTopView.swift */; };
 		25CD80821BE860B900F73EAA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CD80811BE860B900F73EAA /* UILabel+Extension.swift */; };
 		25D044881BE523C1002181D8 /* LKWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D044871BE523C1002181D8 /* LKWelcomeViewController.swift */; };
+		25D3D4511BEF2A9300448B19 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25D3D44B1BEF2A9300448B19 /* Emoticons.bundle */; };
+		25D3D4521BEF2A9300448B19 /* LKEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D3D44C1BEF2A9300448B19 /* LKEmoticon.swift */; };
+		25D3D4531BEF2A9300448B19 /* LKEmoticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D3D44D1BEF2A9300448B19 /* LKEmoticonViewController.swift */; };
+		25D3D4541BEF2A9300448B19 /* LKTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D3D44E1BEF2A9300448B19 /* LKTextAttachment.swift */; };
+		25D3D4561BEF2A9300448B19 /* UITextView+Emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D3D4501BEF2A9300448B19 /* UITextView+Emoticon.swift */; };
 		25E35E8B1BE878D90093C6BE /* LKStatusBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E8A1BE878D90093C6BE /* LKStatusBottomView.swift */; };
 		25E35E8D1BE879820093C6BE /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E8C1BE879820093C6BE /* UIButton+Extension.swift */; };
 		25E35E8F1BE879BE0093C6BE /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E8E1BE879BE0093C6BE /* UIScreen+Extension.swift */; };
@@ -41,9 +47,23 @@
 		25E35E931BE8A9B10093C6BE /* LKStatusForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E921BE8A9B10093C6BE /* LKStatusForwardCell.swift */; };
 		25E35E951BE8B00D0093C6BE /* LKStatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E941BE8B00D0093C6BE /* LKStatusNormalCell.swift */; };
 		25E35E971BE8CCA20093C6BE /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E35E961BE8CCA20093C6BE /* UIImageView+Extension.swift */; };
+		25F436D31BF315430065603C /* LKPhotoBrowserModalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F436D21BF315430065603C /* LKPhotoBrowserModalAnimation.swift */; };
+		25F436D51BF3157A0065603C /* LKPhotoBrowserDismissAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F436D41BF3157A0065603C /* LKPhotoBrowserDismissAnimation.swift */; };
+		25F436D71BF320590065603C /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F436D61BF320590065603C /* UIImage+Scale.swift */; };
+		25F47AFA1BF1AD54007B4D0B /* LKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F47AF91BF1AD54007B4D0B /* LKImageView.swift */; };
+		25F47B011BF1C876007B4D0B /* Popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25F47B001BF1C876007B4D0B /* Popover.storyboard */; };
+		25F47B031BF1CA83007B4D0B /* LKPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F47B021BF1CA83007B4D0B /* LKPopoverViewController.swift */; };
+		25F47B051BF1CF20007B4D0B /* LKPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F47B041BF1CF20007B4D0B /* LKPresentationController.swift */; };
+		25F47B071BF1D76D007B4D0B /* LKModalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F47B061BF1D76D007B4D0B /* LKModalAnimation.swift */; };
+		25F47B091BF1DC7C007B4D0B /* LKDismissAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F47B081BF1DC7C007B4D0B /* LKDismissAnimation.swift */; };
+		25F47B0B1BF1EA6C007B4D0B /* LKPhotoBrowserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F47B0A1BF1EA6C007B4D0B /* LKPhotoBrowserModel.swift */; };
 		25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */; };
 		25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F672F61BDE8D320064ECAD /* LKVistorView.swift */; };
 		25F6B4A91BE28709005C1329 /* LKUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F6B4A81BE28709005C1329 /* LKUserAccount.swift */; };
+		25FE32611BF022B5000C9DE6 /* LKPhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FE325F1BF022B5000C9DE6 /* LKPhotoSelectorViewController.swift */; };
+		25FE32621BF022B5000C9DE6 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FE32601BF022B5000C9DE6 /* UIImage+Extension.swift */; };
+		25FE32CA1BF0669E000C9DE6 /* LKPhotoBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FE32C51BF0669E000C9DE6 /* LKPhotoBrowserCell.swift */; };
+		25FE32CB1BF0669E000C9DE6 /* LKPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FE32C61BF0669E000C9DE6 /* LKPhotoBrowserViewController.swift */; };
 		D4C11F71E9E94C59829C5141 /* Pods_LKSwift_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +111,7 @@
 		2532C4C51BE9CE2200CCEA65 /* LKRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKRefreshControl.swift; sourceTree = "<group>"; };
 		2532C4C71BE9CE6400CCEA65 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
 		2532C4CD1BEA002900CCEA65 /* LKComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKComposeViewController.swift; sourceTree = "<group>"; };
+		2583F5031BEC59B500882545 /* LKTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKTextView.swift; sourceTree = "<group>"; };
 		25BDD2F41BE76E1700A5298E /* LKHomeTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKHomeTitleButton.swift; sourceTree = "<group>"; };
 		25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		25CD80781BE83A2200F73EAA /* LKStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatus.swift; sourceTree = "<group>"; };
@@ -99,6 +120,11 @@
 		25CD807F1BE85BCB00F73EAA /* LKStatusTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusTopView.swift; sourceTree = "<group>"; };
 		25CD80811BE860B900F73EAA /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		25D044871BE523C1002181D8 /* LKWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKWelcomeViewController.swift; sourceTree = "<group>"; };
+		25D3D44B1BEF2A9300448B19 /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
+		25D3D44C1BEF2A9300448B19 /* LKEmoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKEmoticon.swift; sourceTree = "<group>"; };
+		25D3D44D1BEF2A9300448B19 /* LKEmoticonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKEmoticonViewController.swift; sourceTree = "<group>"; };
+		25D3D44E1BEF2A9300448B19 /* LKTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKTextAttachment.swift; sourceTree = "<group>"; };
+		25D3D4501BEF2A9300448B19 /* UITextView+Emoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Emoticon.swift"; sourceTree = "<group>"; };
 		25E35E8A1BE878D90093C6BE /* LKStatusBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusBottomView.swift; sourceTree = "<group>"; };
 		25E35E8C1BE879820093C6BE /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		25E35E8E1BE879BE0093C6BE /* UIScreen+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
@@ -106,9 +132,23 @@
 		25E35E921BE8A9B10093C6BE /* LKStatusForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusForwardCell.swift; sourceTree = "<group>"; };
 		25E35E941BE8B00D0093C6BE /* LKStatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKStatusNormalCell.swift; sourceTree = "<group>"; };
 		25E35E961BE8CCA20093C6BE /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		25F436D21BF315430065603C /* LKPhotoBrowserModalAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPhotoBrowserModalAnimation.swift; sourceTree = "<group>"; };
+		25F436D41BF3157A0065603C /* LKPhotoBrowserDismissAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPhotoBrowserDismissAnimation.swift; sourceTree = "<group>"; };
+		25F436D61BF320590065603C /* UIImage+Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
+		25F47AF91BF1AD54007B4D0B /* LKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKImageView.swift; sourceTree = "<group>"; };
+		25F47B001BF1C876007B4D0B /* Popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popover.storyboard; sourceTree = "<group>"; };
+		25F47B021BF1CA83007B4D0B /* LKPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPopoverViewController.swift; sourceTree = "<group>"; };
+		25F47B041BF1CF20007B4D0B /* LKPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPresentationController.swift; sourceTree = "<group>"; };
+		25F47B061BF1D76D007B4D0B /* LKModalAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKModalAnimation.swift; sourceTree = "<group>"; };
+		25F47B081BF1DC7C007B4D0B /* LKDismissAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKDismissAnimation.swift; sourceTree = "<group>"; };
+		25F47B0A1BF1EA6C007B4D0B /* LKPhotoBrowserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPhotoBrowserModel.swift; sourceTree = "<group>"; };
 		25F672F41BDE8B4C0064ECAD /* LKBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKBaseTableViewController.swift; sourceTree = "<group>"; };
 		25F672F61BDE8D320064ECAD /* LKVistorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKVistorView.swift; sourceTree = "<group>"; };
 		25F6B4A81BE28709005C1329 /* LKUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKUserAccount.swift; sourceTree = "<group>"; };
+		25FE325F1BF022B5000C9DE6 /* LKPhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		25FE32601BF022B5000C9DE6 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		25FE32C51BF0669E000C9DE6 /* LKPhotoBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPhotoBrowserCell.swift; sourceTree = "<group>"; };
+		25FE32C61BF0669E000C9DE6 /* LKPhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		58322AA79669C198763D5DB4 /* Pods-LKSwift_weibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKSwift_weibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKSwift_weibo/Pods-LKSwift_weibo.debug.xcconfig"; sourceTree = "<group>"; };
 		C1818C3DD7B34CF63C7A9271 /* Pods_LKSwift_weibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LKSwift_weibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -212,6 +252,7 @@
 				25E35E8C1BE879820093C6BE /* UIButton+Extension.swift */,
 				25E35E8E1BE879BE0093C6BE /* UIScreen+Extension.swift */,
 				25E35E961BE8CCA20093C6BE /* UIImageView+Extension.swift */,
+				25F436D61BF320590065603C /* UIImage+Scale.swift */,
 			);
 			name = "Extension(延展)";
 			path = Extension;
@@ -220,6 +261,9 @@
 		25085DC71BDE48020060A150 /* Library（库） */ = {
 			isa = PBXGroup;
 			children = (
+				25FE32C41BF0669E000C9DE6 /* PhotoBrowser(照片浏览器) */,
+				25FE325E1BF022B5000C9DE6 /* PhotoSelector（照片选择器） */,
+				25D3D44A1BEF2A9300448B19 /* Emoticon(表情键盘) */,
 				25BDD2F71BE78AB100A5298E /* UIView+AutoLayout.swift */,
 			);
 			name = "Library（库）";
@@ -243,12 +287,12 @@
 				2532C4C91BE9FFD600CCEA65 /* Compose（发微博） */,
 				25D044851BE5237D002181D8 /* NewFeature(欢迎  新特性) */,
 				252DB1141BE237F8008E5A39 /* Oauth(授权) */,
-				25085DDE1BDE48020060A150 /* Test（测试） */,
 				25085DD21BDE48020060A150 /* Main（主要的） */,
 				25085DCE1BDE48020060A150 /* Home（首页） */,
 				25085DD61BDE48020060A150 /* Message（消息） */,
 				25085DCA1BDE48020060A150 /* Discover（发现） */,
 				25085DDA1BDE48020060A150 /* Profile（我） */,
+				25085DDE1BDE48020060A150 /* Test（测试） */,
 			);
 			name = "Module（模块）";
 			path = Module;
@@ -290,6 +334,7 @@
 		25085DCE1BDE48020060A150 /* Home（首页） */ = {
 			isa = PBXGroup;
 			children = (
+				25F47AFF1BF1C82C007B4D0B /* Popover（弹出框） */,
 				25085DCF1BDE48020060A150 /* Controller */,
 				25085DD01BDE48020060A150 /* Model */,
 				25085DD11BDE48020060A150 /* View */,
@@ -528,6 +573,7 @@
 		2532C4CC1BE9FFD600CCEA65 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2583F5031BEC59B500882545 /* LKTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -562,6 +608,64 @@
 				250A4D001BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		25D3D44A1BEF2A9300448B19 /* Emoticon(表情键盘) */ = {
+			isa = PBXGroup;
+			children = (
+				25D3D44B1BEF2A9300448B19 /* Emoticons.bundle */,
+				25D3D44C1BEF2A9300448B19 /* LKEmoticon.swift */,
+				25D3D44D1BEF2A9300448B19 /* LKEmoticonViewController.swift */,
+				25D3D44E1BEF2A9300448B19 /* LKTextAttachment.swift */,
+				25D3D4501BEF2A9300448B19 /* UITextView+Emoticon.swift */,
+			);
+			name = "Emoticon(表情键盘)";
+			path = Emoticon;
+			sourceTree = "<group>";
+		};
+		25F436D11BF3151E0065603C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				25F436D21BF315430065603C /* LKPhotoBrowserModalAnimation.swift */,
+				25F436D41BF3157A0065603C /* LKPhotoBrowserDismissAnimation.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		25F47AFF1BF1C82C007B4D0B /* Popover（弹出框） */ = {
+			isa = PBXGroup;
+			children = (
+				25F47B001BF1C876007B4D0B /* Popover.storyboard */,
+				25F47B021BF1CA83007B4D0B /* LKPopoverViewController.swift */,
+				25F47B041BF1CF20007B4D0B /* LKPresentationController.swift */,
+				25F47B061BF1D76D007B4D0B /* LKModalAnimation.swift */,
+				25F47B081BF1DC7C007B4D0B /* LKDismissAnimation.swift */,
+			);
+			name = "Popover（弹出框）";
+			path = Popover;
+			sourceTree = "<group>";
+		};
+		25FE325E1BF022B5000C9DE6 /* PhotoSelector（照片选择器） */ = {
+			isa = PBXGroup;
+			children = (
+				25FE325F1BF022B5000C9DE6 /* LKPhotoSelectorViewController.swift */,
+				25FE32601BF022B5000C9DE6 /* UIImage+Extension.swift */,
+			);
+			name = "PhotoSelector（照片选择器）";
+			path = PhotoSelector;
+			sourceTree = "<group>";
+		};
+		25FE32C41BF0669E000C9DE6 /* PhotoBrowser(照片浏览器) */ = {
+			isa = PBXGroup;
+			children = (
+				25F436D11BF3151E0065603C /* Animation */,
+				25FE32C61BF0669E000C9DE6 /* LKPhotoBrowserViewController.swift */,
+				25FE32C51BF0669E000C9DE6 /* LKPhotoBrowserCell.swift */,
+				25F47AF91BF1AD54007B4D0B /* LKImageView.swift */,
+				25F47B0A1BF1EA6C007B4D0B /* LKPhotoBrowserModel.swift */,
+			);
+			name = "PhotoBrowser(照片浏览器)";
+			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		C65CD2330D49519D59976B16 /* Frameworks */ = {
@@ -692,7 +796,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25F47B011BF1C876007B4D0B /* Popover.storyboard in Resources */,
 				2532C4C81BE9CE6400CCEA65 /* RefreshView.xib in Resources */,
+				25D3D4511BEF2A9300448B19 /* Emoticons.bundle in Resources */,
 				25085D9F1BDE45780060A150 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,6 +875,7 @@
 				25085E4B1BDE53340060A150 /* LKMessageTableViewController.swift in Sources */,
 				25E35E8B1BE878D90093C6BE /* LKStatusBottomView.swift in Sources */,
 				25085E441BDE4CB20060A150 /* LKMainTabBarViewController.swift in Sources */,
+				25F47B071BF1D76D007B4D0B /* LKModalAnimation.swift in Sources */,
 				25CD80801BE85BCB00F73EAA /* LKStatusTopView.swift in Sources */,
 				25085E4F1BDE53600060A150 /* LKProfileTableViewController.swift in Sources */,
 				25E35E931BE8A9B10093C6BE /* LKStatusForwardCell.swift in Sources */,
@@ -777,26 +884,43 @@
 				25F672F51BDE8B4C0064ECAD /* LKBaseTableViewController.swift in Sources */,
 				25F6B4A91BE28709005C1329 /* LKUserAccount.swift in Sources */,
 				25CD80821BE860B900F73EAA /* UILabel+Extension.swift in Sources */,
+				25D3D4541BEF2A9300448B19 /* LKTextAttachment.swift in Sources */,
 				250A4D011BE59A6500E7F616 /* LKNewFeatureCollectionViewController.swift in Sources */,
+				25D3D4561BEF2A9300448B19 /* UITextView+Emoticon.swift in Sources */,
 				25CD80791BE83A2200F73EAA /* LKStatus.swift in Sources */,
+				25FE32CA1BF0669E000C9DE6 /* LKPhotoBrowserCell.swift in Sources */,
 				2532C4CE1BEA002900CCEA65 /* LKComposeViewController.swift in Sources */,
+				2583F5041BEC59B500882545 /* LKTextView.swift in Sources */,
 				25085E491BDE53240060A150 /* LKHomeTableViewController.swift in Sources */,
+				25F47B051BF1CF20007B4D0B /* LKPresentationController.swift in Sources */,
 				25CD807B1BE8561500F73EAA /* LKUser.swift in Sources */,
 				25E35E8F1BE879BE0093C6BE /* UIScreen+Extension.swift in Sources */,
 				250A4D031BE5A2EC00E7F616 /* UIColor+Extension.swift in Sources */,
 				25E35E8D1BE879820093C6BE /* UIButton+Extension.swift in Sources */,
 				252DB1171BE23824008E5A39 /* LKOauthViewController.swift in Sources */,
+				25F436D51BF3157A0065603C /* LKPhotoBrowserDismissAnimation.swift in Sources */,
+				25F47B0B1BF1EA6C007B4D0B /* LKPhotoBrowserModel.swift in Sources */,
+				25D3D4531BEF2A9300448B19 /* LKEmoticonViewController.swift in Sources */,
 				25085E4D1BDE53510060A150 /* LKDiscoverTableViewController.swift in Sources */,
 				25CD807E1BE85A8700F73EAA /* LKStatusCell.swift in Sources */,
 				25085D951BDE45770060A150 /* AppDelegate.swift in Sources */,
+				25FE32621BF022B5000C9DE6 /* UIImage+Extension.swift in Sources */,
+				25F436D31BF315430065603C /* LKPhotoBrowserModalAnimation.swift in Sources */,
 				25BDD2F81BE78AB100A5298E /* UIView+AutoLayout.swift in Sources */,
 				25E35E971BE8CCA20093C6BE /* UIImageView+Extension.swift in Sources */,
+				25FE32CB1BF0669E000C9DE6 /* LKPhotoBrowserViewController.swift in Sources */,
 				2532C4C61BE9CE2200CCEA65 /* LKRefreshControl.swift in Sources */,
+				25FE32611BF022B5000C9DE6 /* LKPhotoSelectorViewController.swift in Sources */,
+				25D3D4521BEF2A9300448B19 /* LKEmoticon.swift in Sources */,
+				25F436D71BF320590065603C /* UIImage+Scale.swift in Sources */,
+				25F47AFA1BF1AD54007B4D0B /* LKImageView.swift in Sources */,
 				25085D9D1BDE45780060A150 /* LKSwift_weibo.xcdatamodeld in Sources */,
 				250A4D061BE5AC8E00E7F616 /* LKNewFeatureCell.swift in Sources */,
 				25E35E951BE8B00D0093C6BE /* LKStatusNormalCell.swift in Sources */,
 				25F672F71BDE8D320064ECAD /* LKVistorView.swift in Sources */,
 				25BDD2F51BE76E1700A5298E /* LKHomeTitleButton.swift in Sources */,
+				25F47B091BF1DC7C007B4D0B /* LKDismissAnimation.swift in Sources */,
+				25F47B031BF1CA83007B4D0B /* LKPopoverViewController.swift in Sources */,
 				25E35E911BE889DA0093C6BE /* LKStatusPictureView.swift in Sources */,
 				250A4D081BE5D22400E7F616 /* UIBarButtonItem+Extension.swift in Sources */,
 			);

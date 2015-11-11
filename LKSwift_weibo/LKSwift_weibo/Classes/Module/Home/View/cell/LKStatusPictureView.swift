@@ -9,6 +9,16 @@
 import UIKit
 import SDWebImage
 
+// 在类外面全局的,任何地方都可以访问
+/// 点击cell通知的名称
+let LKStatusPictureViewCellSelectedPictureNotification = "LKStatusPictureViewCellSelectedPictureNotification"
+/// 图片地址
+let LKStatusPictureViewCellSelectedPictureURLKey = "LKStatusPictureViewCellSelectedPictureURLKey"
+/// 对应的cell
+let LKStatusPictureViewCellSelectedPictureIndexKey = "LKStatusPictureViewCellSelectedPictureIndexKey"
+/// 图片模型
+let LKStatusPictureViewCellSelectedPictureModelKey = "LKStatusPictureViewCellSelectedPictureModelKey"
+
 // 图片显示collectionView
 class LKStatusPictureView: UICollectionView {
    // MARK: - 属性
@@ -43,6 +53,10 @@ class LKStatusPictureView: UICollectionView {
         
         // 设置数据源
         dataSource = self
+ 
+        // 设置代理
+        delegate = self
+        
         // 设置背景
         backgroundColor = UIColor.clearColor()
 //
@@ -86,6 +100,13 @@ class LKStatusPictureView: UICollectionView {
                 size = image.size
             }
             
+            
+            // 如果图片宽度太小
+            if size.width < 40 {
+                size.width = 40
+            }
+
+            
             layout.itemSize = size
             return size
         }
@@ -116,8 +137,8 @@ class LKStatusPictureView: UICollectionView {
 }
 
 
-// MARK: - 扩展 CZStatusPictureView 类,实现 UICollectionViewDataSource协议
-extension LKStatusPictureView: UICollectionViewDataSource {
+// MARK: - 扩展 CZStatusPictureView 类,实现 UICollectionViewDataSource,Delegate协议
+extension LKStatusPictureView: UICollectionViewDataSource,UICollectionViewDelegate {
  
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return statusPicture?.pictureURLs?.count ?? 0
@@ -134,6 +155,71 @@ extension LKStatusPictureView: UICollectionViewDataSource {
          cell.imageURL = statusPicture?.pictureURLs?[indexPath.item]
         return cell
     }
+    
+    
+    // cell点击事件
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // 点击cell 获得对应的图片地址
+//        print("缩略图url地址:\(statusPicture?.storePictureURLs)")
+//        print("大图url地址:\(statusPicture?.largePictureURLs)")
+        
+        // 点击的哪个cell -----  // indexPath.item
+        // 点击某个cell 通知首页的控制器  弹出查看大图控制器 （多层嵌套）
+        // 图片cell（collectionViewCell） --> collectionView (statusCell微博cell) -->首页的控制器
+        // 代理,闭包,通知
+        /*
+        闭包:1嵌套层次不是很深  2可以有返回值
+        代理:
+        1. 1对1 (xmpp的可以一对多)
+        2. 嵌套层次不是很深
+        3. 代理可以有返回值
+        通知:
+        1. 1对多
+        2. 嵌套层次无所谓
+        3. 无法获取返回值
+        */
+        
+        //cell点击了 提供模型给图片模型
+        // 提供 图片可变模型
+        var models = [LKPhotoBrowserModel]()
+        // 大图URL的数量
+        let count = statusPicture?.largePictureURLs?.count ?? 0
+        
+        // 遍历 每一张图 创建一个模型
+        for i in 0..<count {
+            // 创建模型
+            let model = LKPhotoBrowserModel()
+            // 对应 图片的大图URL
+            let url = statusPicture?.largePictureURLs?[i]
+            
+            // 缩略图的Imageview
+            // 根据索引拿到cell  ,collectionView 通过 Item
+            let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as! LKStatusPictureViewCell
+            let imageView = cell.iconView
+            
+            model.url = url
+            model.imageView = imageView
+            
+            models.append(model)
+        }
+
+        /**
+         *  Name:通知名 ，object：谁发送的 ，userInfo：附加信息
+         */
+         // 发送通知,携带 url 点击的 cell的Index
+         // 发送通知,附加信息携带 url 点击的 cell的Index
+         // 想把 url 和 点击的indexPath.item传给控制器
+        let userInfo: [String: AnyObject] = [
+            LKStatusPictureViewCellSelectedPictureModelKey: models,
+            LKStatusPictureViewCellSelectedPictureURLKey: statusPicture!.largePictureURLs!,
+            LKStatusPictureViewCellSelectedPictureIndexKey: indexPath.item
+        ]
+        // 创建通知
+        NSNotificationCenter.defaultCenter().postNotificationName(LKStatusPictureViewCellSelectedPictureNotification, object: self, userInfo: userInfo)
+        
+
+        
+    }
 
 }
 
@@ -146,6 +232,11 @@ class LKStatusPictureViewCell: UICollectionViewCell {
         didSet {
             // 设置图片 下载
             iconView.lk_setImageWithURL(imageURL)
+            
+            // 判断是否是gif图片 不是就隐藏gif小图标
+            let gif = (imageURL!.absoluteString as NSString).pathExtension.lowercaseString == "gif"
+            
+            gifImageView.hidden = !gif
         }
     }
     
@@ -165,10 +256,15 @@ class LKStatusPictureViewCell: UICollectionViewCell {
     private func prepareUI() {
         // 添加子控件
         contentView.addSubview(iconView)
+        //gif图片
+         contentView.addSubview(gifImageView)
         
         // 添加约束
         // 填充父控件
         iconView.ff_Fill(contentView)
+        
+        gifImageView.ff_AlignInner(type: ff_AlignType.BottomRight, referView: contentView, size: nil)
+
     }
 
     
@@ -184,4 +280,7 @@ class LKStatusPictureViewCell: UICollectionViewCell {
         
         return imageView
     }()
+    
+    /// gif标示
+    private lazy var gifImageView: UIImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
 }
