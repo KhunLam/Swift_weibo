@@ -272,6 +272,8 @@ class LKVistorView: UIView {
         // 设置文字
         button.setTitle("登录", forState: UIControlState.Normal)
         
+        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        
         button.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         
         // 设置背景

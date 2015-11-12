@@ -18,11 +18,15 @@ class LKPhotoBrowserCell: UICollectionViewCell {
  
     
     // MARK: - 属性
+    
+    /// 代理
+    weak var cellDelegate: LKPhotoBrowserCellDelegate?
+    
     /// 要显示图片的url地址
-    var url: NSURL? {
+    var photoModel: LKPhotoBrowserModel? {
         didSet {
             // 下载图片
-            guard let imageURL = url else {
+            guard let imageURL = photoModel?.url else {
                 print("imageURL 为空")
                 return
             }
@@ -205,6 +209,22 @@ extension LKPhotoBrowserCell: UIScrollViewDelegate {
     /// scrollView缩放时调用
     func scrollViewDidZoom(scrollView: UIScrollView) {
         print("缩放时")
+        //缩放时 到一定的大小  图片会自动关闭
+        
+        
+        // 修改控制器的背景
+        // 通过代理获取需要设置alpha的view
+        let view = cellDelegate?.viewForTransparent()
+       
+        // 根据缩放比例来设置view的alpha
+        if imageView.transform.a < 1 {
+            // 设置alpah
+            view?.alpha = imageView.transform.a * 0.7 - 0.2
+            print("\(imageView.transform.a * 0.7 - 0.2)")
+        } else {
+            view?.alpha = 1
+        }
+
     }
     
     
@@ -227,13 +247,42 @@ extension LKPhotoBrowserCell: UIScrollViewDelegate {
         if offestX < 0 {
             offestX = 0
         }
-
         
-       UIView.animateWithDuration(0.25) { () -> Void in
-        // 当缩放比例小于设置的最小缩放比例时,会动画到左上角,在调用 scrollViewDidEndZooming,不让系统缩放到比指定最小缩放比例还小的值
-        // 会跳动
-        // 设置scrollView的contentInset来居中图片
-        scrollView.contentInset = UIEdgeInsets(top: offestY, left: offestX, bottom: offestY, right: offestX)
+        // 当缩放比例小于一定的值,就自动缩放回去
+        if imageView.transform.a < 0.7 {
+          //直接dismiss关闭控制器 会每次都到左上角
+//            cellDelegate?.cellDismiss()
+            
+            // 让缩放到缩略图的位置,在关闭控制器
+            // 获取缩略图
+            let thumbImage = photoModel!.imageView!
+            // 计算缩放后的位置
+            let rect = thumbImage.superview!.convertRect(thumbImage.frame, toCoordinateSpace: self)
+
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                
+                // 设置 imageView的bounds
+                self.imageView.frame = CGRect(x: 0, y: 0, width: rect.width, height: rect.height)
+                
+                self.scrollView.contentOffset.x = -rect.origin.x
+                self.scrollView.contentOffset.y = -rect.origin.y
+                
+                self.scrollView.contentInset = UIEdgeInsets(top: rect.origin.y, left: rect.origin.x, bottom: 0, right: 0)
+                
+                }, completion: { (_) -> Void in
+                    print("缩放完成,关闭控制器")
+                    self.cellDelegate?.cellDismiss()
+            })
+
+            
+        }else{
+             // 移到中间去
+                UIView.animateWithDuration(0.25) { () -> Void in
+                // 当缩放比例小于设置的最小缩放比例时,会动画到左上角,在调用 scrollViewDidEndZooming,不让系统缩放到比指定最小缩放比例还小的值
+                // 会跳动
+                // 设置scrollView的contentInset来居中图片
+                scrollView.contentInset = UIEdgeInsets(top: offestY, left: offestX, bottom: offestY, right: offestX)
+             }
         }
     }
     
@@ -245,4 +294,12 @@ extension LKPhotoBrowserCell: UIScrollViewDelegate {
     */
 
 
+}
+///创建代理 拿到控制器的View
+protocol LKPhotoBrowserCellDelegate: NSObjectProtocol {
+    // 获取一个view,在缩放的时候修改alpha
+    func viewForTransparent() -> UIView
+    
+    // 通知控制器关闭
+    func cellDismiss()
 }

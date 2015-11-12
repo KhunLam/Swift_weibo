@@ -46,7 +46,7 @@ class LKPhotoBrowserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.clearColor()
     
           prepareUI()
         
@@ -69,6 +69,9 @@ class LKPhotoBrowserViewController: UIViewController {
     
     private func prepareUI() {
         // 添加子控件 --顺序不要搞错
+        // 注意背景视图添加在最底部
+        view.addSubview(bkgView)
+        
         view.addSubview(collectionView)
         view.addSubview(closeButton)
         view.addSubview(saveButton)
@@ -79,10 +82,14 @@ class LKPhotoBrowserViewController: UIViewController {
         saveButton.addTarget(self, action: "save", forControlEvents: UIControlEvents.TouchUpInside)
         
         // 添加约束
+        // 设置 背景视图的frame
+        bkgView.frame = view.bounds
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         pageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         
         let views = [
             "cv": collectionView,
@@ -118,6 +125,9 @@ class LKPhotoBrowserViewController: UIViewController {
         // 注册cell
         collectionView.registerClass(LKPhotoBrowserCell.self, forCellWithReuseIdentifier: cellIdentifier)
       
+        // 设置collelctionView的背景颜色
+        collectionView.backgroundColor = UIColor.clearColor()
+        
         // layout.item
         layout.itemSize = view.bounds.size
         
@@ -193,6 +203,16 @@ class LKPhotoBrowserViewController: UIViewController {
     /// 页码的label
     private lazy var pageLabel = UILabel(fonsize: 15, textColor: UIColor.whiteColor())
     
+    /// 背景视图,用于修改alpha
+    private lazy var bkgView: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = UIColor(white: 0, alpha: 1)
+        
+        return view
+    }()
+
+    
 }
 
 
@@ -209,11 +229,15 @@ extension LKPhotoBrowserViewController: UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! LKPhotoBrowserCell
         
 //        cell.backgroundColor = UIColor.randomColor()
-        cell.backgroundColor = UIColor.blackColor()
+        cell.backgroundColor = UIColor.clearColor()
         
         // 设置cell要显示的url
 //        cell.url = urls[indexPath.item]
-        cell.url = photoModels[indexPath.item].url
+        cell.photoModel = photoModels[indexPath.item]
+        
+        // 设置控制器为cell的代理
+        cell.cellDelegate = self
+        
         return cell
     }
     
@@ -231,7 +255,20 @@ extension LKPhotoBrowserViewController: UICollectionViewDataSource, UICollection
     }
 }
 
-
+// MARK: - 扩展 LKPhotoBrowserViewController 实现 LKPhotoBrowserCellDelegate 协议
+extension LKPhotoBrowserViewController: LKPhotoBrowserCellDelegate {
+    // 返回需要设置alpha的view
+    func viewForTransparent() -> UIView {
+        return bkgView
+        
+    }
+    
+    // 关闭控制器
+    func cellDismiss() {
+        // 关闭是不需要动画
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
 
 // MARK: - 转场动画
 
@@ -303,13 +340,15 @@ extension LKPhotoBrowserViewController {
         let thumbImage = thumbImageView.image!
         
         // 计算宽高
-        let newSize = thumbImage.displaySize()
+        var newSize = thumbImage.displaySize()
         
         // 判断长短图
         var offestY: CGFloat = 0
         if newSize.height < UIScreen.height() {
             //短图
             offestY = (UIScreen.height() - newSize.height) * 0.5
+        }else {
+            newSize.height = UIScreen.height()
         }
         
         return CGRect(x: 0, y: offestY, width: newSize.width, height: newSize.height)
@@ -331,7 +370,7 @@ extension LKPhotoBrowserViewController {
         // 创建过渡视图
         let tempImageView = UIImageView(image: image)
         
-        // 设置过渡视图 属性 
+        // 设置过渡视图 属性
         tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
         tempImageView.clipsToBounds = true
         
@@ -352,7 +391,7 @@ extension LKPhotoBrowserViewController {
         let thumbImageView = model.imageView
         
         // 坐标系转换
-        let rect = model.imageView!.superview!.convertRect(model.imageView!.frame, toCoordinateSpace: view)
+        let rect = thumbImageView!.superview!.convertRect(model.imageView!.frame, toCoordinateSpace: view)
         
         return rect
     }
